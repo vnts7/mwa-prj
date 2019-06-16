@@ -1,0 +1,23 @@
+<div class="c-box">
+  <h1>Register</h1>
+  <form [formGroup]="form" class="v-form">
+    <mat-form-field>
+      <input matInput placeholder="Fullname" formControlName="fullname" name="fullname" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Email" formControlName="email" name="email" required>
+      <mat-error *ngIf="email.invalid && email.errors.email">Invalid email address</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Password" formControlName="password" type="password" name="password" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Reapet Password" formControlName="repeatPassword" type="password"
+        name="repeatPassword" required>
+      <mat-error *ngIf="repeatPassword.invalid && repeatPassword.errors.passwordMatch">Password mismatch
+      </mat-error>
+    </mat-form-field>
+    <button mat-raised-button (click)="register()" color="warn">Register</button>
+    <span>Allrady have an account ? <a [routerLink]="['/login']">Login</a> here</span>
+  </form>
+</div>
