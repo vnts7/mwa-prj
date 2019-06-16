@@ -10,18 +10,25 @@ import {
   MatIconModule,
   MatInputModule,
   MatFormFieldModule,
+  MatCardModule,
+  MatAutocompleteModule,
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { AuthInterceptor } from './auth.interceptor';
 import { HomeComponent } from './home/home.component';
 import { routes } from './routes';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    RegisterComponent,
+    LoginComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -34,6 +41,8 @@ import { routes } from './routes';
     MatIconModule,
     MatInputModule,
     MatFormFieldModule,
+    MatCardModule,
+    MatAutocompleteModule,
 
   ],
   providers: [
