@@ -2,6 +2,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {
+  MatButtonModule,
+  MatIconModule,
+  MatInputModule,
+  MatFormFieldModule,
+} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { AuthInterceptor } from './auth.interceptor';
@@ -16,8 +25,16 @@ import { routes } from './routes';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatInputModule,
+    MatFormFieldModule,
+
   ],
   providers: [
     {
