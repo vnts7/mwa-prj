@@ -17,8 +17,9 @@ nav .container {
   color: #fff;
 }
 
-nav .container .mat-button {
+nav .mat-button {
   color: inherit;
+  padding: 4px 16px;
 }
 
 .container {
