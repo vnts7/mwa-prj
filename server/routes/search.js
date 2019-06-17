@@ -46,7 +46,7 @@ function searchNutrient (req, res) {
 function search (req, res) {
     console.log(req.query.q);
      
-    let API_FOOD = 'https://api.nal.usda.gov/ndb/search?max=10&api_key=' + config.api_key  + '&q=' + req.query.q
+    let API_FOOD = 'https://api.nal.usda.gov/ndb/search?max=10&ds=Standard%20Reference&sort=r&api_key=' + config.api_key  + '&q=' + req.query.q
     
     request(API_FOOD, function (error, response, body) {
         console.log('API_FOOD: ', API_FOOD);  
