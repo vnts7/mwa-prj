@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const FoodSchema = require('mongoose').model('Food').schema;
+const mongo = require('mongodb');
 
 const UserSchema = new mongoose.Schema({
     username: {
@@ -53,8 +54,11 @@ const UserSchema = new mongoose.Schema({
         type: Number
     },
     trackers: [{
+        _id: ObjectId,
         meals: [{ // mealIndex > 0: breakfast, 1: lunch, 2: dinner, 3: snacks
+            _id: ObjectId,
             foods: [{
+                _id: ObjectId,
                 food: FoodSchema,
                 quantity: {
                     type: Number
@@ -82,8 +86,7 @@ const User = module.exports = mongoose.model('User', UserSchema);
 
 module.exports.getUserByUsername = (username, callback) => {
     const query = { username: username };
-    User.findOne(query, callback)
-        .populate({ path: 'meals.foods._id', model: 'Food' });
+    User.findOne(query, callback);
 };
 
 module.exports.addTracker = (newTracker, callback) => {
@@ -91,12 +94,37 @@ module.exports.addTracker = (newTracker, callback) => {
     User.save(callback);
 };
 
+module.exports.removeTracker = (date, callback) => {
+    for (var i = 0; i < User.trackers.length; i++) {
+        if (User.trackers[i] === User.getTrackerByDate(date)) {
+            User.trackers.splice(i, 1);
+        }
+    }
+    User.save(callback);
+};
+
+module.exports.clearTrackers = (callback) => {
+    User.trackers = [];
+    User.save(callback);
+};
+
 module.exports.addFood = (food, quantity, mealIndex, date, callback) => {
     User.getTrackerByDate(date).meals[mealIndex].foods.push({
+        _id: mongo.ObjectID,
         food: food,
         quantity: quantity
     });
     User.getTrackerByDate(date).meals[mealIndex].totalCalories += food.calories * quantity;
+    User.save(callback);
+};
+
+module.exports.removeFood = (id, mealIndex, date, callback) => {
+    foods = User.getTrackerByDate(date).meals[mealIndex].foods;
+    for (var i = 0; i < foods.length; i++) {
+        if (foods[i]._id == id) {
+            foods.splice(i, 1);
+        }
+    }
     User.save(callback);
 };
 
