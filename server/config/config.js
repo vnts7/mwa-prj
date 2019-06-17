@@ -8,7 +8,8 @@ const config = {
     jwtSecret: e.JWT_SECRET,
     mongo: {
         host: e.MONGO_HOST,
-    }
+    },
+    api_key: e.FOOD_API_KEY
 }
 
 module.exports = config;

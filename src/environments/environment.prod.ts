@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  mwaNodeServer: 'http://localhost:1234'
 };

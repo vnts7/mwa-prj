@@ -1,0 +1,13 @@
+  
+    
+
+    <mat-form-field class="search-full-width">
+
+      <input matInput placeholder="Food" [matAutocomplete]="auto" [formControl]="searchInputControl" >
+      <mat-autocomplete #auto="matAutocomplete"  [displayWith]="displayFn">
+        <mat-option *ngFor="let item of filteredData " [value]="item" > 
+          <span>{{item.name}}</span> 
+          <small> | Group: {{item.group}}   </small>  
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>

@@ -1,0 +1,112 @@
+
+GET http://localhost:1234/api/search
+###
+
+POST http://localhost:1234/foods
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###
+
+GET http://localhost:3000/lectures/5cf6de1127da926b64c578d8
+
+
+###
+# content-type : lower case; application/json without ', breakline to request body 
+POST http://localhost:3000/lectures
+content-type: application/json
+
+{
+    "id" : 10,
+    "lecture" : "mongodb part 1",
+    "course" : "CS572"
+}
+
+POST http://localhost:3000/lectures
+content-type: application/json
+
+{
+    "id" : 2,
+    "lecture" : "nodejs",
+    "course" : "CS572"
+}
+
+POST http://localhost:3000/lectures
+content-type: application/json
+
+{
+    "id" : 3,
+    "lecture" : "mongodb part 2",
+    "course" : "CS572"
+}
+
+POST http://localhost:3000/lectures
+content-type: application/json
+
+{
+    "id" : 4,
+    "lecture" : "asynchronous in js",
+    "course" : "CS572"
+}
+
+###
+POST http://localhost:3000/lectures
+content-type: application/json
+
+{
+    "id" : 5,
+    "lecture" : "asynchronous in JS",
+    "course" : "CS572"
+}
+
+###
+
+PUT http://localhost:3000/lectures
+content-type: application/json
+
+{ 
+    "id":  4 ,
+    "lecture" : "asynchronous in js... ",
+    "course" : "CS572"
+}
+
+//DELETE http://localhost:3000/lectures/5cf6d25afe7a7b18308271cb
+
+DELETE http://localhost:3000/lectures
+content-type: application/json
+
+{
+    "course" : "CS572"
+}
+ 
+###
+GET http://localhost:3000/lectures/search/mongodb
+
+###
+GET http://localhost:3000/lectures/search/part
+ 
+###
+GET http://localhost:3000/lectures/search/node
+
+
+###
+GET http://localhost:3000/lectures/search/js
