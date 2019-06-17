@@ -26,6 +26,8 @@ import { HomeComponent } from './home/home.component';
 import { routes } from './routes';
 import { SearchcomponentComponent } from './searchcomponent/searchcomponent.component';
 
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -34,10 +36,10 @@ import { SearchcomponentComponent } from './searchcomponent/searchcomponent.comp
     HomeComponent,
     SearchcomponentComponent
   ],
+  
   imports: [
     BrowserModule,
-    ReactiveFormsModule,
-    FormsModule, 
+    BrowserAnimationsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatAutocompleteModule, MatFormFieldModule,    
@@ -47,6 +49,17 @@ import { SearchcomponentComponent } from './searchcomponent/searchcomponent.comp
 
     RouterModule.forRoot(routes),
     
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatAutocompleteModule,
+
+    RegisterComponent,
+    LoginComponent,
   ],
   providers: [
     {

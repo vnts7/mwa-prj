@@ -1,6 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+* {
+  box-sizing: border-box;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  font-family: Roboto, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  margin: 0;
+  font-size: 13px;
+  background: #eee;
+}
+
+.flex-spacer {
+  flex-grow: 1;
+}
+
+a {
+  color: #673ab7;
+  text-decoration: none;
+}
+
+.v-form>* {
+  width: 100%;
+  display: block !important;
+  margin-bottom: 15px;
+}
+
+.v-form button {
+  margin: 10px 0 20px 0;
+}
+
+.c-box {
+  max-width: 500px;
+  margin: 100px auto;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .14);
+  border-radius: 5px;
+  background: #fff;
+  padding: 20px 40px;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: rgba(0, 0, 0, .15);
+}
