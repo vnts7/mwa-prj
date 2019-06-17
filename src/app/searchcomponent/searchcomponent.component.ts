@@ -4,8 +4,7 @@ import {Observable, of , Subscription} from 'rxjs';
 import {debounceTime, map, startWith, switchMap} from 'rxjs/operators';
  
 import { HttpClient  } from '@angular/common/http';  
-
-import { environment } from '../../environments/environment';
+ 
 import {  EventEmitter } from '@angular/core';
 import { SearchService } from './searchcomponent.service'; 
  
@@ -17,8 +16,8 @@ import { SearchService } from './searchcomponent.service';
 })
 export class SearchcomponentComponent {
 
-  SUB_SEARCH = environment.mwaNodeServer + '/api/search/food'
-  NUTRIENT_SEARCH = environment.mwaNodeServer + '/api/search/nutrient'
+  SUB_SEARCH = '/api/search/food'
+  NUTRIENT_SEARCH =   '/api/search/nutrient'
   
   searchInputControl = new FormControl();
    
