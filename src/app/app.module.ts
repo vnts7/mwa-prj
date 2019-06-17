@@ -34,7 +34,9 @@ import { LoginComponent } from './login/login.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    SearchcomponentComponent
+    SearchcomponentComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   
   imports: [
@@ -58,8 +60,7 @@ import { LoginComponent } from './login/login.component';
     MatCardModule,
     MatAutocompleteModule,
 
-    RegisterComponent,
-    LoginComponent,
+    
   ],
   providers: [
     {
