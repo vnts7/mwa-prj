@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 
 // error handler, send stacktrace only during development
 app.use((err, req, res, next) => {
-  res.status(500).json({
+  res.json({
     success: false,
     message: err
   });
