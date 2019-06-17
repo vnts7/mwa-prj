@@ -14,16 +14,16 @@ const config = require('../config/config');
 //         "ds": "LI",
 //         "manu": "Good Humor-Breyers Ice Cream"
 //     },
-
+// Example Nutrient: https://api.nal.usda.gov/ndb/reports/?ndbno=01009&type=f&format=json&api_key=ANAQtthwi1ObZhaWWV8B4VA8eGsymK5NAbLqzu2a
+ 
 router.get('/food',  search)
 router.get('/nutrient',  searchNutrient)
 
 function searchNutrient (req, res) {
     console.log(req.query.q);
       
-    // Example: https://api.nal.usda.gov/ndb/reports/?ndbno=01009&type=f&format=json&api_key=ANAQtthwi1ObZhaWWV8B4VA8eGsymK5NAbLqzu2a
     let API_NUTRIENT = 'https://api.nal.usda.gov/ndb/reports/?api_key=' + config.api_key  + '&ndbno=' + req.query.q
-    //let promise = new Promise(function(resolve, reject){
+ 
         console.log('API_NUTRIENT: ', API_NUTRIENT);  
         request(API_NUTRIENT, function (error, response, body) {
            
@@ -31,21 +31,40 @@ function searchNutrient (req, res) {
                 if (!error && response.statusCode == 200  ) {
                     let food = convert2Json(JSON.parse(body).report.food);
 
-                    res.json({ success: true, data : food });
-                   //resolve({ success: true, data : JSON.parse(body).report.food });
+                    res.json({ success: true, data : food }); 
                 } else {
-                    res.json({ success: false, data : [] });
-                   ///reject({ success: false, data : [] });
+                    res.json({ success: false, data : [] }); 
                 }
             } catch (err) {
                 console.log('search JSON error', err);
-                res.json({ success: false, data : [], error : {message : 'parse json error OR no result'} });
-               //reject({ success: false, data : [] });
+                res.json({ success: false, data : [], error : {message : 'parse json error OR no result'} }); 
             }
         }) 
-    //})
+  
 
 }
+function search (req, res) {
+    console.log(req.query.q);
+     
+    let API_FOOD = 'https://api.nal.usda.gov/ndb/search?max=10&api_key=' + config.api_key  + '&q=' + req.query.q
+    
+    request(API_FOOD, function (error, response, body) {
+        console.log('API_FOOD: ', API_FOOD);  
+        try {
+            if (!error && response.statusCode == 200  ) {
+                res.json({ success: true, data : JSON.parse(body).list.item });
+            } else {
+                res.json({ success: false, data : [] });
+            }
+        } catch (err) {
+            console.log('search JSON error', err);
+            res.json({ success: false, data : [], error : {message : 'parse json error OR no result'} });
+        }
+    }) 
+    
+}
+
+
 function convert2Json(json) {
     let rs = {};
     rs.ndbno = json.ndbno;
@@ -69,31 +88,15 @@ function convert2Json(json) {
             rs.protein = nutrient.value;
             c++
         }
-        if (c==4) {
+        if (nutrient.nutrient_id=="205") {
+            rs.carbs = nutrient.value;
+            c++
+        }
+        if (c==5) {
             break;
         }
     }
     return rs;
-}
-function search (req, res) {
-    console.log(req.query.q);
-     
-    let API_FOOD = 'https://api.nal.usda.gov/ndb/search?max=10&api_key=' + config.api_key  + '&q=' + req.query.q
-    
-    request(API_FOOD, function (error, response, body) {
-        console.log('API_FOOD: ', API_FOOD);  
-        try {
-            if (!error && response.statusCode == 200  ) {
-                res.json({ success: true, data : JSON.parse(body).list.item });
-            } else {
-                res.json({ success: false, data : [] });
-            }
-        } catch (err) {
-            console.log('search JSON error', err);
-            res.json({ success: false, data : [], error : {message : 'parse json error OR no result'} });
-        }
-    }) 
-    
 }
 
 module.exports = router;

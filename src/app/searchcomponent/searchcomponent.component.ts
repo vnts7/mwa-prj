@@ -34,21 +34,19 @@ export class SearchcomponentComponent {
   ngOnInit() {
 
       this.httpSubscription = this.searchInputControl.valueChanges.pipe(
-        debounceTime(400),
-       
-        switchMap(value => {
-           // console.log('value', value);
-            if (value.length > 0 && value.length < 30) {
-              return this.search(this.SUB_SEARCH , value);
-            } 
-            return [];
-        })
-      ).subscribe(res => { 
-          this.filteredData =res.data;
-          console.log('res', this.filteredData);
-      }); 
-
+      debounceTime(400),
       
+      switchMap(value => {
+          // console.log('value', value);
+          if (value.length > 0 && value.length < 30) {
+            return this.search(this.SUB_SEARCH , value);
+          } 
+          return [];
+      })
+    ).subscribe(res => { 
+        this.filteredData =res.data;
+        console.log('res', this.filteredData);
+    });
   }
   
   search(rout, keyword): Observable<any> {
@@ -61,9 +59,6 @@ export class SearchcomponentComponent {
 
     if (selectedItem != null) {
       this.selectedDataItem = selectedItem;
-      // console.log('displayFn', selectedItem);
-     // this.searchService.test().emit(selectedItem); // can not emit here => onSelectionChangeFunction
-
       return selectedItem ? selectedItem.name : selectedItem;
     } return;
   }
