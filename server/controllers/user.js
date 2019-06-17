@@ -8,6 +8,10 @@ async function insert(user) {
   return await new User(user).save();
 }
 
+async function findByEmail(email) {
+  return await User.findOne({ email }, { fullname: 1, email: 1, roles: 1, password: 1 });
+}
+
 
 function generateToken(user) {
   const payload = JSON.stringify(user);
@@ -16,5 +20,6 @@ function generateToken(user) {
 
 module.exports = {
   insert,
-  generateToken
+  generateToken,
+  findByEmail,
 }

@@ -1,19 +1,19 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const userCtrl = require('../controllers/user');
-const User = require('../models/user');
-
 
 const router = express.Router();
 
-router.post('/register', async (req, res) => {
-    let user = await userCtrl.insert(req.body);
+router.post('/register', async (req, res, next) => {
+    let user = await userCtrl.findByEmail(req.body.email);
+    if (user) return next(req.body.email + ' has been taken!')
+    user = await userCtrl.insert(req.body);
     login(res, user);
 });
 
 router.post('/login', async (req, res, next) => {
     const { password, email } = req.body;
-    let user = await User.findOne({ email }, { fullname: 1, email: 1, roles: 1, password:1 });
+    let user = await userCtrl.findByEmail(email);
     if (!user || !bcrypt.compareSync(password, user.password))
         return next('Your login details could not be verified. Please try again.');
     login(res, user);
