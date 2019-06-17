@@ -1,8 +1,5 @@
 
-GET http://localhost:1234/api/search
+GET http://localhost:1234/api/search/food?q=apple
 ###
-
-POST http://localhost:1234/foods
-
-
+http://localhost:1234/api/search/nutrient?q=45120650
  

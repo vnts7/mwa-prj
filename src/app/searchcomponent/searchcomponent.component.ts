@@ -17,7 +17,8 @@ import { SearchService } from './searchcomponent.service';
 })
 export class SearchcomponentComponent {
 
-  SUB_SEARCH = environment.mwaNodeServer + '/api/search'
+  SUB_SEARCH = environment.mwaNodeServer + '/api/search/food'
+  NUTRIENT_SEARCH = environment.mwaNodeServer + '/api/search/nutrient'
   
   searchInputControl = new FormControl();
    
@@ -26,7 +27,7 @@ export class SearchcomponentComponent {
   filteredData: Observable<Object[]>; 
   httpSubscription : Subscription;
 
-  @Output() tomato: EventEmitter<any> = new EventEmitter() ; 
+  @Output() selectedAutocomplete: EventEmitter<any> = new EventEmitter() ; 
   
   constructor(private http : HttpClient, private searchService : SearchService) {}
 
@@ -38,7 +39,7 @@ export class SearchcomponentComponent {
         switchMap(value => {
            // console.log('value', value);
             if (value.length > 0 && value.length < 30) {
-              return this.search(value);
+              return this.search(this.SUB_SEARCH , value);
             } 
             return [];
         })
@@ -50,8 +51,9 @@ export class SearchcomponentComponent {
       
   }
   
-  search(keyword): Observable<any> {
-    let url = this.SUB_SEARCH  + '?q=' + keyword;
+  search(rout, keyword): Observable<any> {
+    let url = rout  + '?q=' + keyword;
+    console.log('url', url);
     return (this.http.get(url));
   }
 
@@ -59,18 +61,28 @@ export class SearchcomponentComponent {
 
     if (selectedItem != null) {
       this.selectedDataItem = selectedItem;
-      
-     // this.searchService.test().emit(selectedItem);
+      // console.log('displayFn', selectedItem);
+     // this.searchService.test().emit(selectedItem); // can not emit here => onSelectionChangeFunction
 
       return selectedItem ? selectedItem.name : selectedItem;
     } return;
   }
-  
+
+  // selected Food on autocomplete -> search calories
+  onSelectionChangeFunction(selectedItem) {
+    console.log('onSelectionChangeFunction', selectedItem); 
+    // search calories
+    let foodId =  selectedItem.ndbno;
+    console.log('foodId', foodId);
+    this.httpSubscription = this.search(this.NUTRIENT_SEARCH , foodId).subscribe(res => { 
+        let data = res.data;
+        console.log('nutrient data', data);
+        this.selectedAutocomplete.emit(data);
+    }); 
+  }  
+
   ngOnDestroy() {
     this.httpSubscription.unsubscribe();
   }
 
-  ngOnChanges(change) {
-    console.log('ngOnChanges');
-  }
 }
