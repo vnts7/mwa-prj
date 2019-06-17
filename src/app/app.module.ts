@@ -29,16 +29,19 @@ import { SearchcomponentComponent } from './searchcomponent/searchcomponent.comp
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 
 @NgModule({
   declarations: [
-    ProfileComponent,
     AppComponent,
     HomeComponent,
     SearchcomponentComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent,
+    AboutUsComponent,
+    
   ],
   
   imports: [

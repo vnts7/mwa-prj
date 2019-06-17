@@ -20,4 +20,8 @@ export class AuthService {
     } catch (error) { }
     return this._user;
   }
+  logout(){
+    localStorage.removeItem(this.key);
+    this._user = null;
+  }
 }

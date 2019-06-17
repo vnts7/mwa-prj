@@ -1,12 +1,18 @@
 <nav>
   <div class="container">
-    <a mat-button [routerLink]="['']">Home</a>
-    <a mat-button [routerLink]="['about']">About us</a>
-    <a mat-button [routerLink]="['user','tracker']">Meal Tracker</a>
+    <a mat-button [routerLink]="['/']">Home</a>
+    <a mat-button [routerLink]="['/about-us']">About us</a>
+    <a mat-button [routerLink]="['/user','tracker']">Meal Tracker</a>
+    <a mat-button [routerLink]="['/user', 'profile']">Profile</a>
     <div class="flex-spacer"></div>
-    <a mat-button [routerLink]="['login']">Login</a>
-    <a mat-button [routerLink]="['register']">Register</a>
-    <a mat-button [routerLink]="['user', 'profile']">Profile</a>
+    <ng-container *ngIf="!user">
+        <a mat-button [routerLink]="['/login']">Login</a>
+        <a mat-button [routerLink]="['/register']">Register</a>
+    </ng-container>
+    <ng-container *ngIf="!!user">
+        <span>Hi <b>{{user.fullname}}</b> </span>
+        <a mat-button (click)="logout()">[Logout]</a>
+    </ng-container>
   </div>
 
 </nav>

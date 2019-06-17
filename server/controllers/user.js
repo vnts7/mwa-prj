@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
+const config = require('../config/config')
 
 async function insert(user) {
   user.password = bcrypt.hashSync(user.password, 10);
