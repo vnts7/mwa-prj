@@ -1,0 +1,98 @@
+<div>
+  Daily tracker for
+  <input [matDatepicker]="myDatepicker">
+  <mat-datepicker #myDatepicker></mat-datepicker>
+</div>
+<div>
+  <button id="createTracker">Create tracker</button>
+</div>
+<div class="trackerTbl">
+  <table>
+    <tbody>
+      <tr class="meal-header">
+        <td class="meal">Breakfast</td>
+        <td class="nutrient">Calories</td>
+        <td class="nutrient">Protein</td>
+        <td class="nutrient">Carbs</td>
+        <td class="nutrient">Fat</td>
+        <td class="nutrient">Sugar</td>
+      </tr>
+      <tr *ngFor="let f of bfoods">
+        <td>{{f.name}</td>
+        <td>{{f.calories}}</td>
+        <td>{{f.protein}}</td>
+        <td>{{f.carbs}}</td>
+        <td>{{f.fat}}</td>
+        <td>{{f.sugar}}</td>
+      </tr>
+      <tr class="bottom">
+        <td>
+          <button class="addFood">Add food</button>
+        </td>
+      </tr>
+      <tr class="meal-header">
+        <td class="meal">Lunch</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr *ngFor="let f of lfoods">
+        <td>{{f.name}</td>
+        <td>{{f.calories}}</td>
+        <td>{{f.protein}}</td>
+        <td>{{f.carbs}}</td>
+        <td>{{f.fat}}</td>
+        <td>{{f.sugar}}</td>
+      </tr>
+      <tr class="bottom">
+        <td>
+          <button class="addFood">Add food</button>
+        </td>  
+      </tr>
+      <tr class="meal-header">
+        <td class="meal">Dinner</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr *ngFor="let f of dfoods">
+        <td>{{f.name}</td>
+        <td>{{f.calories}}</td>
+        <td>{{f.protein}}</td>
+        <td>{{f.carbs}}</td>
+        <td>{{f.fat}}</td>
+        <td>{{f.sugar}}</td>
+      </tr>
+      <tr class="bottom">
+        <td>
+          <button class="addFood">Add food</button>
+        </td>
+      </tr>
+      <tr class="meal-header">
+        <td class="meal">Snacks</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr *ngFor="let f of sfoods">
+        <td>{{f.name}</td>
+        <td>{{f.calories}}</td>
+        <td>{{f.protein}}</td>
+        <td>{{f.carbs}}</td>
+        <td>{{f.fat}}</td>
+        <td>{{f.sugar}}</td>
+      </tr>
+      <tr class="bottom">
+        <td>
+          <button class="addFood">Add food</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
