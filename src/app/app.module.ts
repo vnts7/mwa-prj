@@ -20,10 +20,12 @@ import { HomeComponent } from './home/home.component';
 import { routes } from './routes';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
   declarations: [
+    ProfileComponent,
     AppComponent,
     HomeComponent,
     RegisterComponent,

@@ -2,6 +2,7 @@ import { Route } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
 
 export const routes: Route[] = [
   {
@@ -16,20 +17,18 @@ export const routes: Route[] = [
     path: 'register',
     component: RegisterComponent
   },
-  // {
-  //   path: 'user',
-  //   canActivate: [UserGuard],
-  //   children: [
-  //     {
-  //       path: '',
-  //       redirectTo: 'profile'
-  //     },
-  //     {
-  //       path: 'profile',
-  //       component: ProfileComponent
-  //     },
-  //   ]
-  // },
+   
+  {
+    path: 'user',
+    //canActivate: [UserGuard],
+    children: [ 
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        pathMatch: 'full'
+      },
+    ]
+  },
   // {
   //   path: 'admin',
   //   canActivate: [AdminGuard],
