@@ -1,7 +1,7 @@
 <div class="c-box">
   <h1>Login</h1>
   <form class="v-form" [formGroup]="form" (submit)="submit($event)">
-    <div class="msg-error" *ngIf="!!msg">{{msg}}</div>
+    <div class="alert alert-danger" *ngIf="!!msg">{{msg}}</div>
     <mat-form-field>
       <input matInput placeholder="Email" type="email" name="email" formControlName="email" required>
       <mat-error *ngIf="email.invalid && email.errors.email">Invalid email address</mat-error>
