@@ -8,4 +8,6 @@ router.use('/user', require('./user'));
 //authRequire route
 router.use('/profile', authRequire, require('./profile'));
 
+router.use('/search', require('./search'));
+
 module.exports = router;
