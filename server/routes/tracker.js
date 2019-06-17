@@ -1,14 +1,20 @@
 const express = require('express');
 
 const trackerController = require('./controllers/tracker.controller');
-const authentication = require('./config/authentication');
+const authentication = require('./middleware/authRequire');
 
 const router = express.Router();
 
-router.post('/tracker', authentication, trackerController.addTracker);
+router.post('/', authentication, trackerController.addTracker);
 
-router.post('/tracker/addFood', authentication, trackerController.addFood);
+router.post('/add-food', authentication, trackerController.addFood);
 
-router.get('/tracker', authentication, trackerController.getDailyTracker);
+router.patch('/remove-food', authentication, trackerController.removeFood);
+
+router.get('/', authentication, trackerController.getDailyTracker);
+
+router.delete('/', authentication, trackerController.removeTracker);
+
+router.delete('/clear', authentication, trackerController.clearAllTrackers);
 
 module.exports = router;
