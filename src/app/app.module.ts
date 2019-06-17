@@ -21,6 +21,7 @@ import { routes } from './routes';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { GenderPipe } from './pipe/gender.pipe';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import { ProfileComponent } from './profile/profile.component';
     HomeComponent,
     RegisterComponent,
     LoginComponent,
-    
+    GenderPipe,
   ],
   imports: [
     BrowserModule,

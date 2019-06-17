@@ -1,3 +1,28 @@
-<p>
-  profile works!
-</p>
+<div class="c-box">
+    <h1>Profile</h1>
+    <div>
+      <p><label>Name: </label>{{user.fullname}}</p>
+      <p><label>Email: </label> {{user.email}}</p>
+      <p><label>Gender: </label> {{user.gender | gender}}</p>
+      <p><label>Date Of Birth: </label> {{user.dateOfBirth | date}}</p>
+    </div>
+    <div>
+      <p><label>Weight: </label> {{user.weight}}</p>
+      <p><label>Height: </label> {{user.height}}</p>
+      <p><label>BMI: </label> {{user.bmi}}</p>
+      <p><label>BMR: </label> {{user.bmr}}</p>
+      <p ngClass="active"><label>Activity Level: </label> 
+          <span *ngIf="user.activities == 1"> Sedentary </span>
+          <span *ngIf="user.activities == 2"> Lightly active </span>
+          <span *ngIf="user.activities == 3"> Moderately active </span>
+          <span *ngIf="user.activities == 4">  Active </span>
+          <span *ngIf="user.activities == 5"> Very active </span>
+      </p> 
+      <p><label>Goal: </label> 
+        <span *ngIf="user.goal == 1"> Lose weight </span>
+        <span *ngIf="user.goal == 2"> Maintain weight </span>
+        <span *ngIf="user.goal == 3"> Gain weight </span> 
+      </p>
+    </div>
+</div>
+  
