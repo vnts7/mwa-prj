@@ -7,8 +7,8 @@ router.get('/check', async (req, res) => {
   res.json({ success: true })
 });
 
-router.get('/:username',   (req, res) => {
-  User.findOne({email : req.params['username']}).then( result => {
+ router.get('/:username', async  (req, res) => {
+  await User.findOne({email : req.params['username']}).then( result => {
     if (result) { 
       res.status(200).json(result);
     } else {

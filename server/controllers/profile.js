@@ -1,11 +1,11 @@
 const User = require('../models/user');
  
-function findByUserName(user) { 
+async function findByUserName(user) { 
   // result =  User.findOne({email : user})
   // console.log('result findOne: ' , result);
   // return result; 
   console.log('user: ' , user);
-  User.findOne({email : user}).then( result => {
+  await User.findOne({email : user}).then( result => {
     if (result) {
       console.log('result: ', result)
       return result; 
