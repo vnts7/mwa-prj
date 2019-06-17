@@ -10,4 +10,6 @@ router.use('/profile', authRequire, require('./profile'));
 
 router.use('/search', require('./search'));
 
+router.use('/tracker', require('./tracker'));
+
 module.exports = router;
