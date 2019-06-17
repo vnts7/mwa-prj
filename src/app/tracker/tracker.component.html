@@ -1,0 +1,103 @@
+<div>
+  Daily tracker for
+  <input [matDatepicker]="myDatepicker" placeholder="Choose a date">
+  <mat-datepicker #myDatepicker></mat-datepicker>
+  <button id="createTracker" onclick="addTracker()">Create tracker</button>
+  <button id="getTracker" onclick="getTracker()">Get tracker</button>
+  <button id="deleteTracker" onclick="deleteTracker()" *ngIf="hide">Remove tracker</button>
+  <button id="deleteAllTrackers" onclick="clearAllTrackers()">Clear all</button> 
+</div>
+<div class="trackerTbl" *ngIf="hide">
+  <table>
+    <tbody>
+      <tr class="meal-header">
+        <td class="meal">Breakfast</td>
+        <td class="nutrient">Calories</td>
+        <td class="nutrient">Protein</td>
+        <td class="nutrient">Carbs</td>
+        <td class="nutrient">Fat</td>
+        <td class="nutrient">Sugar</td>
+      </tr>
+      <tr *ngFor="let f of bfoods">
+        <td>{{f.food.name}</td>
+        <td>{{f.food.calories}}</td>
+        <td>{{f.food.protein}}</td>
+        <td>{{f.food.carbs}}</td>
+        <td>{{f.food.fat}}</td>
+        <td>{{f.food.sugar}}</td>
+        <td><button mat-icon-button onclick="removeFood(f.food._id, 0)"><mat-icon svgIcon="remove-circle"></mat-icon></button></td>
+      </tr>
+      <tr class="bottom">
+        <td>
+          <button mat-raised-button (click)="addFood()">Add food</button>
+        </td>
+      </tr>
+      <tr class="meal-header">
+        <td class="meal">Lunch</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr *ngFor="let f of lfoods">
+        <td>{{f.food.name}</td>
+        <td>{{f.food.calories}}</td>
+        <td>{{f.food.protein}}</td>
+        <td>{{f.food.carbs}}</td>
+        <td>{{f.food.fat}}</td>
+        <td>{{f.food.sugar}}</td>
+        <td><button mat-icon-button onclick="removeFood(f.food._id, 1)"><mat-icon svgIcon="remove-circle"></mat-icon></button></td>
+      </tr>
+      <tr class="bottom">
+        <td>
+          <button class="addFood" onclick="addFood()">Add food</button>
+        </td>  
+      </tr>
+      <tr class="meal-header">
+        <td class="meal">Dinner</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr *ngFor="let f of dfoods">
+        <td>{{f.food.name}</td>
+        <td>{{f.food.calories}}</td>
+        <td>{{f.food.protein}}</td>
+        <td>{{f.food.carbs}}</td>
+        <td>{{f.food.fat}}</td>
+        <td>{{f.food.sugar}}</td>
+        <td><button mat-icon-button onclick="removeFood(f.food._id, 2)"><mat-icon svgIcon="remove-circle"></mat-icon></button></td>
+      </tr>
+      <tr class="bottom">
+        <td>
+          <button class="addFood" onclick="addFood()">Add food</button>
+        </td>
+      </tr>
+      <tr class="meal-header">
+        <td class="meal">Snacks</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr *ngFor="let f of sfoods">
+        <td>{{f.food.name}</td>
+        <td>{{f.food.calories}}</td>
+        <td>{{f.food.protein}}</td>
+        <td>{{f.food.carbs}}</td>
+        <td>{{f.food.fat}}</td>
+        <td>{{f.food.sugar}}</td>
+        <td><button mat-icon-button onclick="removeFood(f.food._id, 3)"><mat-icon svgIcon="remove-circle"></mat-icon></button></td>
+      </tr>
+      <tr class="bottom">
+        <td>
+          <button class="addFood" onclick="addFood()">Add food</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

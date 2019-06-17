@@ -2,7 +2,9 @@ import { Route } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './services/auth.guard';
 import { ProfileComponent } from './profile/profile.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 export const routes: Route[] = [
   {
@@ -17,15 +19,22 @@ export const routes: Route[] = [
     path: 'register',
     component: RegisterComponent
   },
-   
+  {
+    path: 'about-us',
+    component: AboutUsComponent
+  },
   {
     path: 'user',
-    //canActivate: [UserGuard],
-    children: [ 
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        redirectTo: 'profile',
+        pathMatch: 'full'
+      },
       {
         path: 'profile',
-        component: ProfileComponent,
-        pathMatch: 'full'
+        component: ProfileComponent
       },
     ]
   },

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, ValidationErrors, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -8,8 +9,8 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
-  constructor(private u: UserService) { }
+  msg = null;
+  constructor(private u: UserService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -30,11 +31,13 @@ export class RegisterComponent implements OnInit {
   get email(): any { return this.form.get('email'); }
   get repeatPassword(): any { return this.form.get('repeatPassword'); }
   submit(e) {
+    this.msg = null;
     if (this.form.invalid) return false;
     const u = this.form.getRawValue();
     delete u.repeatPassword;
-    this.u.register(u).subscribe(data => {
-      console.log(data);
+    this.u.register(u).subscribe(r => {
+      if(r.success)return this.router.navigate(['/user/profile']);
+      this.msg = r.message;
     });
     return false;
   }
