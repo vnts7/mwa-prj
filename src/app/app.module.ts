@@ -40,27 +40,18 @@ import { LoginComponent } from './login/login.component';
   ],
   
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
+    BrowserModule, 
     HttpClientModule,
     BrowserAnimationsModule,
     MatAutocompleteModule, MatFormFieldModule,    
     MatToolbarModule, MatExpansionModule, MatProgressSpinnerModule,
-    MatPaginatorModule,  MatInputModule,
+    MatPaginatorModule,  MatInputModule,  MatCardModule, 
     MatButtonModule, MatCheckboxModule,MatIconModule, MatMenuModule,
 
     RouterModule.forRoot(routes),
     
     FormsModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatIconModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatCardModule,
-    MatAutocompleteModule,
-
-    
+    ReactiveFormsModule, 
   ],
   providers: [
     {
