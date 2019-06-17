@@ -1,6 +1,6 @@
 <div class="c-box">
   <h1>Login</h1>
-  <form class="v-form">
+  <form class="v-form" (submit)="submit($event)">
     <mat-form-field>
       <input matInput placeholder="Email" type="email">
       <mat-icon matSuffix>person</mat-icon>
@@ -9,7 +9,7 @@
       <input matInput placeholder="Password" type="password">
       <mat-icon matSuffix>lock</mat-icon>
     </mat-form-field>
-    <button mat-flat-button color="warn">Login</button>
+    <button mat-raised-button color="warn" type="submit">Login</button>
     <p>
       Don't have account yet? <a color="primary" [routerLink]="['/register']">Register</a>
     </p>
