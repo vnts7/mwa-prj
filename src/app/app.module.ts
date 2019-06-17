@@ -34,7 +34,6 @@ import { AboutUsComponent } from './about-us/about-us.component';
 
 @NgModule({
   declarations: [
-    ProfileComponent,
     AppComponent,
     HomeComponent,
     SearchcomponentComponent,
