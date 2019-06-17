@@ -57,7 +57,7 @@ import { LoginComponent } from './login/login.component';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true,
+      multi: true, 
     },
   ],
   bootstrap: [AppComponent]
