@@ -7,15 +7,9 @@ router.get('/check', async (req, res) => {
   res.json({ success: true })
 });
 
-router.get('/:username', async  (req, res) => { 
-  await User.findOne({email : req.params['username']}).then( result => {
-    if (result) { 
-      res.status(200).json(result);
-    } else {
-      res.status(404).json({ success : "false", message: "not found!", data :{} });
-    }
-  }) 
- 
+router.get('/:username', async  (req, res) => {  
+  let data = await profileController.findByUserName(req.params['username']);
+  res.json(data);
 });
 
 router.put('/', async (req, res, next) => {
