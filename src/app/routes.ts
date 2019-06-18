@@ -6,6 +6,7 @@ import { AuthGuard } from './services/auth.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { TrackerComponent } from './tracker/tracker.component';
+import { Chart2Component } from './chart2/chart2.component';
 
 export const routes: Route[] = [
   {
@@ -41,15 +42,10 @@ export const routes: Route[] = [
         path: 'tracker',
         component: TrackerComponent
       },
+      {
+        path: 'chart',
+        component: Chart2Component
+      },
     ]
   },
-  // {
-  //   path: 'admin',
-  //   canActivate: [AdminGuard],
-  //   children: [
-  //     {
-  //       path: ''
-  //     },
-  //   ]
-  // }
 ];
