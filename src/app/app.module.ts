@@ -35,7 +35,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { TrackerComponent } from './tracker/tracker.component';
 
-
+import { Chart2Component } from './chart2/chart2.component';
+import { ChartsModule } from 'ng2-charts'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +47,7 @@ import { TrackerComponent } from './tracker/tracker.component';
     ProfileComponent,
     AboutUsComponent,
     TrackerComponent,
+    Chart2Component,
     
   ],
   
@@ -60,11 +62,12 @@ import { TrackerComponent } from './tracker/tracker.component';
     MatDatepickerModule,
     MatMomentDateModule,
     MatListModule,
-
+    ChartsModule, //WavesModule,
     RouterModule.forRoot(routes),
-    
+    //MDBBootstrapModule.forRoot(),
     FormsModule,
     ReactiveFormsModule, 
+    
   ],
   providers: [
     {
