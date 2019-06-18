@@ -9,6 +9,12 @@ router.get('/check', async (req, res) => {
 
 router.get('/:username', async  (req, res) => {  
   let data = await profileController.findByUserName(req.params['username']);
+  // BMI = (Weight in Kilograms / (Height in Meters x Height in Meters))
+  try {
+    if (data && !data.bmi) {
+      data.bmi = data.weight / ( Number(data.height) * Number(data.height))
+    }
+  } catch(err) {console.log('skip calculating BMI', err)} 
   res.json(data);
 });
 
