@@ -39,6 +39,7 @@ import { MealTypePipe } from './pipes/meal-type.pipe';
 
 import { Chart2Component } from './chart2/chart2.component';
 import { ChartsModule } from 'ng2-charts'; 
+import { GoalPipe } from './pipes/goal.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +52,7 @@ import { ChartsModule } from 'ng2-charts';
     TrackerComponent,
     Chart2Component,
     MealTypePipe,
+    GoalPipe,
     
   ],
   

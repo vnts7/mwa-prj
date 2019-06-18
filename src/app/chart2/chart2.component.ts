@@ -34,6 +34,10 @@ export class Chart2Component implements OnInit {
     const date = moment().startOf('day').subtract(month, 'month').unix();
     this.s.readFromDate(date).subscribe(r => {
       if (!r.success) { return; }
+      this.labels = [];
+      this.data[0].data = [];
+      this.data[1].data = [];
+      this.data[2].data = [];
       r.data.forEach(i => {
         var time = moment.unix(i.date).format("MM/DD/YYYY");
         this.labels.push(time)
