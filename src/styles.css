@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import './grid.css';
 
 * {
   box-sizing: border-box;
@@ -41,13 +42,14 @@ a {
   padding: 20px 40px;
 }
 
-.box{
+.box {
   max-width: 1024px;
   margin: 0 auto;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .14);
   border-radius: 5px;
   background: #fff;
   padding: 1em;
+  margin-bottom: 1em;
 }
 
 .mat-form-field-appearance-legacy .mat-form-field-underline {
@@ -84,4 +86,48 @@ a {
   color: #004085;
   background-color: #cce5ff;
   border-color: #b8daff;
+}
+
+.cpb {
+  padding-top: 5px;
+}
+
+.cpb .mat-progress-bar {
+  height: 8px;
+}
+
+.cpb .mat-progress-bar-buffer {
+  background: #fff !important;
+}
+
+.li {
+  padding: .5em 0;
+  padding-right: 30px;
+  position: relative;
+}
+
+.li-title {}
+
+.li-stitle {
+  font-size: .9em;
+  opacity: .8;
+  margin-top: 5px;
+}
+
+.li-action {
+  position: absolute;
+  right: 1em;
+  height: 100%;
+  display: flex;
+  top: 0;
+  align-items: center;
+}
+
+.chip {
+  background: #17a2b8;
+  border-radius: 100px;
+  color: #fff;
+  padding: 2px 8px;
+  display: inline-block;
+  vertical-align: middle;
 }

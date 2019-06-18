@@ -72,6 +72,7 @@ export class SearchcomponentComponent {
       let data = res.data;
       console.log('nutrient data', data);
       this.select.emit(data);
+      this.searchInputControl.setValue('');
     });
   }
 

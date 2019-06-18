@@ -12,7 +12,8 @@ import {
   MatIconModule,
   MatMenuModule,
   MatDatepickerModule,
-  MatListModule
+  MatListModule,
+  MatProgressBarModule,
 } from "@angular/material";
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { BrowserModule } from '@angular/platform-browser';
@@ -34,6 +35,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { TrackerComponent } from './tracker/tracker.component';
+import { MealTypePipe } from './pipes/meal-type.pipe';
 
 import { Chart2Component } from './chart2/chart2.component';
 import { ChartsModule } from 'ng2-charts'; 
@@ -48,6 +50,7 @@ import { ChartsModule } from 'ng2-charts';
     AboutUsComponent,
     TrackerComponent,
     Chart2Component,
+    MealTypePipe,
     
   ],
   
@@ -62,9 +65,9 @@ import { ChartsModule } from 'ng2-charts';
     MatDatepickerModule,
     MatMomentDateModule,
     MatListModule,
-    ChartsModule, //WavesModule,
-    RouterModule.forRoot(routes),
-    //MDBBootstrapModule.forRoot(),
+    ChartsModule, 
+    MatProgressBarModule,
+    RouterModule.forRoot(routes), 
     FormsModule,
     ReactiveFormsModule, 
     
