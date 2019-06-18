@@ -9,6 +9,11 @@ const TrackerSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  calorieIntake: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
   date: {
     type: Number,
     required: true,

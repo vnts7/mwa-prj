@@ -38,6 +38,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { GenderPipe } from './pipe/gender.pipe';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { TrackerComponent } from './tracker/tracker.component';
+import { MealTypePipe } from './pipes/meal-type.pipe';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { TrackerComponent } from './tracker/tracker.component';
     ProfileComponent,
     AboutUsComponent,
     TrackerComponent,
+    MealTypePipe,
     
   ],
   
@@ -65,6 +67,7 @@ import { TrackerComponent } from './tracker/tracker.component';
     MatDatepickerModule,
     MatMomentDateModule,
     MatListModule,
+    MatProgressBarModule,
 
     RouterModule.forRoot(routes),
     
