@@ -1,0 +1,19 @@
+
+GET http://localhost:1234/api/profile/hmm@gmail.com
+
+###
+PUT  http://localhost:1234/api/profile/5d080ef74286a1718832c0d3
+content-type: application/json
+
+{
+  "_id": "5d080ef74286a1718832c0d3",
+  "fullname" : "Test 1",
+  "gender": "1",
+  "weight": "200",
+  "height": "180",
+  "dateOfBirth": "2000-01-01",
+  "activities": "3",
+  "goal": "3",
+  "bmi": "19",
+  "calorieNeeds": "2000"
+}

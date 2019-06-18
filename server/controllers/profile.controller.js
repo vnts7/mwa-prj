@@ -1,9 +1,6 @@
 const User = require('../models/user');
  
-async function findByUserName(user) { 
-  // result =  User.findOne({email : user})
-  // console.log('result findOne: ' , result);
-  // return result; 
+async function findByUserName(user) {  
   console.log('user: ' , user);
   await User.findOne({email : user}).then( result => {
     if (result) {
@@ -14,5 +11,9 @@ async function findByUserName(user) {
     }
   });
 }
+
+async function updateProfile(user) {
+    return await User.updateOne({ _id: user._id }, user);
+} 
  
-module.exports = {findByUserName}
+module.exports = {findByUserName, updateProfile}

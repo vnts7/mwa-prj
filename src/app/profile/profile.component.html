@@ -1,28 +1,81 @@
-<div class="c-box">
-    <h1>Profile</h1>
-    <div>
-      <p><label>Name: </label>{{user.fullname}}</p>
-      <p><label>Email: </label> {{user.email}}</p>
-      <p><label>Gender: </label> {{user.gender | gender}}</p>
-      <p><label>Date Of Birth: </label> {{user.dateOfBirth | date}}</p>
+
+
+<mat-tab-group [selectedIndex]="selectedIndex">
+    <mat-tab label="Updating"><div class="c-box"  >
+        <h1>Update Profile</h1>
+        <div>
+          <div>(So that we can care)</div>
+          <form [formGroup]="form" class="v-form" (submit)="onSave($event)">
+              <mat-form-field>
+                <input matInput placeholder="Weight (Kg in Number)" formControlName="weight" name="weight" type="number">
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Height (Cm in Number)" formControlName="height" name="height" type="number">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Gender</mat-label> 
+                <mat-select formControlName="gender" >
+                  <mat-option value="0">Male</mat-option>
+                  <mat-option value="1">Female</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Date Of Birth" formControlName="dob" type="date">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Activity Level</mat-label> 
+                <mat-select formControlName="activity" >
+                  <mat-option value="1">Sedentary</mat-option>
+                  <mat-option value="2">Lightly active</mat-option>
+                  <mat-option value="3">Moderately active </mat-option> 
+                  <mat-option value="4">  Active</mat-option> 
+                  <mat-option value="5"> Very active</mat-option> 
+                </mat-select>
+              </mat-form-field> 
+              <mat-form-field>
+                <mat-label>Goal</mat-label>
+                <mat-select formControlName="goal" >
+                  <mat-option value="1">Lose weight</mat-option>
+                  <mat-option value="2">Maintain weight</mat-option>
+                  <mat-option value="3">Gain weight </mat-option> 
+                </mat-select>
+              </mat-form-field> 
+              <button mat-raised-button type="submit" color="primary">Save</button>
+          </form>
+         </div>
     </div>
-    <div>
-      <p><label>Weight: </label> {{user.weight}}</p>
-      <p><label>Height: </label> {{user.height}}</p>
-      <p><label>BMI: </label> {{user.bmi}}</p>
-      <p><label>BMR: </label> {{user.bmr}}</p>
-      <p ngClass="active"><label>Activity Level: </label> 
-          <span *ngIf="user.activities == 1"> Sedentary </span>
-          <span *ngIf="user.activities == 2"> Lightly active </span>
-          <span *ngIf="user.activities == 3"> Moderately active </span>
-          <span *ngIf="user.activities == 4">  Active </span>
-          <span *ngIf="user.activities == 5"> Very active </span>
-      </p> 
-      <p><label>Goal: </label> 
-        <span *ngIf="user.goal == 1"> Lose weight </span>
-        <span *ngIf="user.goal == 2"> Maintain weight </span>
-        <span *ngIf="user.goal == 3"> Gain weight </span> 
-      </p>
-    </div>
-</div>
+  </mat-tab>
+    <mat-tab label="Information">
+        <div class="c-box" >
+            <h1>Your Information</h1>
+            <div>
+              <p><label>Name: </label>{{user.fullname}}</p>
+              <p><label>Email: </label> {{user.email}}</p>
+              <p><label>Gender: </label> {{user.gender | gender}}</p>
+              <p><label>Date Of Birth: </label> {{user.dateOfBirth | date}}</p>
+            </div>
+            <div>
+              <p><label>Weight: </label> {{user.weight}} kg</p>
+              <p><label>Height: </label> {{user.height}} cm</p>
+              <p><label>BMI: </label> {{user.bmi}}</p>
+              <!--p><label>BMR: </label> {{user.bmr}}</p -->
+              <p ngClass="active"><label>Activity Level: </label> 
+                  <span *ngIf="user.activities == 1"> Sedentary </span>
+                  <span *ngIf="user.activities == 2"> Lightly active </span>
+                  <span *ngIf="user.activities == 3"> Moderately active </span>
+                  <span *ngIf="user.activities == 4">  Active </span>
+                  <span *ngIf="user.activities == 5"> Very active </span>
+              </p> 
+              <p><label>Goal: </label> 
+                <span *ngIf="user.goal == 1"> Lose weight </span>
+                <span *ngIf="user.goal == 2"> Maintain weight </span>
+                <span *ngIf="user.goal == 3"> Gain weight </span> 
+              </p>
+            </div>
+        </div>
+    </mat-tab>
+  </mat-tab-group>
+
+<div>
   
+   

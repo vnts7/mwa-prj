@@ -10,7 +10,9 @@ import {
   MatFormFieldModule,
   MatCheckboxModule,
   MatIconModule,
-  MatMenuModule
+  MatMenuModule,
+  MatSelectModule,
+  MatTabsModule
 } from "@angular/material";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -50,9 +52,9 @@ import { AboutUsComponent } from './about-us/about-us.component';
     BrowserModule, 
     HttpClientModule,
     BrowserAnimationsModule,
-    MatAutocompleteModule, MatFormFieldModule,    
+    MatAutocompleteModule, MatFormFieldModule, MatSelectModule,
     MatToolbarModule, MatExpansionModule, MatProgressSpinnerModule,
-    MatPaginatorModule,  MatInputModule,  MatCardModule, 
+    MatPaginatorModule,  MatInputModule,  MatCardModule, MatTabsModule,
     MatButtonModule, MatCheckboxModule,MatIconModule, MatMenuModule,
 
     RouterModule.forRoot(routes),

@@ -83,7 +83,7 @@ const UserSchema = new mongoose.Schema({
 });
 
 // module.exports = mongoose.model('User', UserSchema);
-const User = module.exports = mongoose.model('UserRemoved', UserSchema);
+const User = module.exports = mongoose.model('User2', UserSchema);
 
 module.exports.getUserByUsername = (username, callback) => {
     const query = { username: username };

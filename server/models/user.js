@@ -26,7 +26,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
     }],
     gender: { // 0: male, 1: female
-        type: Boolean 
+        type: Number 
     },
     weight: {
         type: Number
