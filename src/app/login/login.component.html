@@ -1,15 +1,17 @@
 <div class="c-box">
   <h1>Login</h1>
-  <form class="v-form">
+  <form class="v-form" [formGroup]="form" (submit)="submit($event)">
+    <div class="alert alert-danger" *ngIf="!!msg">{{msg}}</div>
     <mat-form-field>
-      <input matInput placeholder="Email" type="email">
+      <input matInput placeholder="Email" type="email" name="email" formControlName="email" required>
+      <mat-error *ngIf="email.invalid && email.errors.email">Invalid email address</mat-error>
       <mat-icon matSuffix>person</mat-icon>
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Password" type="password">
+      <input matInput placeholder="Password" type="password" name="password" formControlName="password" required>
       <mat-icon matSuffix>lock</mat-icon>
     </mat-form-field>
-    <button mat-flat-button color="warn">Login</button>
+    <button mat-raised-button color="warn" type="submit">Login</button>
     <p>
       Don't have account yet? <a color="primary" [routerLink]="['/register']">Register</a>
     </p>

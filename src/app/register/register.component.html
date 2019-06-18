@@ -1,6 +1,7 @@
 <div class="c-box">
   <h1>Register</h1>
-  <form [formGroup]="form" class="v-form">
+  <form [formGroup]="form" class="v-form" (submit)="submit($event)">
+    <div class="alert alert-danger" *ngIf="!!msg">{{msg}}</div>
     <mat-form-field>
       <input matInput placeholder="Fullname" formControlName="fullname" name="fullname" required>
     </mat-form-field>
@@ -17,7 +18,7 @@
       <mat-error *ngIf="repeatPassword.invalid && repeatPassword.errors.passwordMatch">Password mismatch
       </mat-error>
     </mat-form-field>
-    <button mat-raised-button (click)="register()" color="warn">Register</button>
+    <button mat-raised-button type="submit" color="warn">Register</button>
     <span>Allrady have an account ? <a [routerLink]="['/login']">Login</a> here</span>
   </form>
 </div>

@@ -1,20 +1,20 @@
 const express = require('express');
-
-const trackerController = require('./controllers/tracker.controller');
-const authentication = require('./middleware/authRequire');
+const ct = require('../controllers/tracker');
 
 const router = express.Router();
+router.get('/:date', async (req, res, next) => {
+  const data = await ct.findByDate(req.user._id, req.params.date);
+  res.json({ success: true, data });
+});
 
-router.post('/', authentication, trackerController.addTracker);
+router.post('/:date', async (req, res, next) => {
+  const data = await ct.addMeal(req.user._id, req.params.date, req.body);
+  res.json({ success: true, data });
+});
 
-router.post('/add-food', authentication, trackerController.addFood);
-
-router.patch('/remove-food', authentication, trackerController.removeFood);
-
-router.get('/', authentication, trackerController.getDailyTracker);
-
-router.delete('/', authentication, trackerController.removeTracker);
-
-router.delete('/clear', authentication, trackerController.clearAllTrackers);
+router.delete('/:date/:mealId', async (req, res, next) => {
+  const data = await ct.removeMeal(req.user._id, req.params.date, req.params.mealId);
+  res.json({ success: true, data });
+});
 
 module.exports = router;

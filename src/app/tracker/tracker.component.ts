@@ -1,53 +1,57 @@
 import { Component, OnInit } from '@angular/core';
-import { TrackerService } from './tracker.service';
-
+import * as moment from 'moment';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { TrackerService } from '../services/tracker.service';
 @Component({
   selector: 'app-tracker',
   templateUrl: './tracker.component.html',
   styleUrls: ['./tracker.component.css']
 })
 export class TrackerComponent implements OnInit {
-  startDate = new Date(2000, 0, 1);
+  
+  date = moment().startOf('day');
+  tracker = null;
+  showFoodError = false;
+  food = null;
+  maxCalo = 1500;
+  constructor(private s: TrackerService) { }
 
-  myDatepicker: Date;
-  bfoods: [];
-  lfoods: [];
-  dfoods: [];
-  sfoods: [];
-  hide: boolean = true;
-
-  constructor(private trackerService: TrackerService) { }
-
-  addTracker() {
-    this.trackerService.addTracker(this.myDatepicker);
-    this.hide = false;
-  }
-
-  removeFood(id, type: number) {
-    this.trackerService.removeFoodFromMeal(id, type, this.myDatepicker);
-  }
-
-  getTracker() {
-    this.hide = false;
-  }
-
-  removeTracker() {
-    this.trackerService.removeTracker(this.myDatepicker);
-    this.hide = false;
-  }
-
-  clearAllTrackers() {
-    this.trackerService.clearAllTrackers();
-    this.hide = false;
-  }
+  form = new FormGroup({
+    type: new FormControl(null, [Validators.required]),
+    quantity: new FormControl(1, [Validators.required]),
+  });
 
   ngOnInit() {
-    this.trackerService.getTracker(this.myDatepicker).subscribe((t) => {
-      this.bfoods = t.meals[0].foods;
-      this.lfoods = t.meals[1].foods;
-      this.dfoods = t.meals[2].foods;
-      this.sfoods = t.meals[3].foods;
-    }); 
+    this.dateChange(this.date);
   }
-
+  dateChange(date: moment.Moment) {
+    this.date = date;
+    this.s.readByDate(date.unix()).subscribe(r => {
+      this.tracker = r.data;
+    })
+  }
+  submit() {
+    if (this.form.invalid) return false;
+    if (!this.food) {
+      this.showFoodError = true;
+      return false;
+    }
+    const data = { ...this.food, ...this.form.getRawValue() };
+    this.s.addMeal(this.date.unix(), data).subscribe(r=>{
+      if(!r.success) return;
+      this.tracker = r.data;
+      this.food = null;
+    })
+    console.log(data);
+  }
+  foodSelect(e) {
+    this.showFoodError = false;
+    this.food = e;
+  }
+  removeMeal(id){
+    this.s.removeMeal(this.date.unix(), id).subscribe(r=>{
+      if(!r.success) return;
+      this.tracker = r.data;
+    })
+  }
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, ValidationErrors, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -7,8 +9,8 @@ import { FormControl, ValidationErrors, FormGroup, Validators } from '@angular/f
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
-  constructor() { }
+  msg = null;
+  constructor(private u: UserService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -17,7 +19,7 @@ export class RegisterComponent implements OnInit {
     let password = control.root.get('password');
     return password && control.value !== password.value ? {
       passwordMatch: true
-    }: null;
+    } : null;
   }
 
   form = new FormGroup({
@@ -28,4 +30,16 @@ export class RegisterComponent implements OnInit {
   });
   get email(): any { return this.form.get('email'); }
   get repeatPassword(): any { return this.form.get('repeatPassword'); }
+  submit(e) {
+    this.msg = null;
+    if (this.form.invalid) return false;
+    const u = this.form.getRawValue();
+    delete u.repeatPassword;
+    this.u.register(u).subscribe(r => {
+      if(r.success)return this.router.navigate(['/user/profile']);
+      this.msg = r.message;
+    });
+    return false;
+  }
+
 }
