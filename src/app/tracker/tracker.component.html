@@ -1,4 +1,5 @@
 <div class="box">
+  <div class="alert alert-danger" *ngIf="!!msg">{{msg}}</div>
   <mat-form-field>
     <input matInput [matDatepicker]="picker" placeholder="Choose a date" (dateChange)="dateChange($event.value)"
       [value]="date">
@@ -23,14 +24,13 @@
         <mat-form-field>
           <mat-label>Choose meal</mat-label>
           <select matNativeControl required formControlName="type">
-            <option value=""></option>
             <option value="0">Breakfast</option>
             <option value="1">Lunch</option>
             <option value="2">Dinner</option>
             <option value="3">Snacks</option>
           </select>
         </mat-form-field>
-        <mat-form-field style="width: 70px;">
+        <mat-form-field style="width: 70px; margin-left: 7px;">
           <input matInput placeholder="Quantity" formControlName="quantity">
         </mat-form-field>
         <p>

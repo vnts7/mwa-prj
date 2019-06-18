@@ -8,7 +8,7 @@ import { TrackerService } from '../services/tracker.service';
   styleUrls: ['./tracker.component.css']
 })
 export class TrackerComponent implements OnInit {
-  
+  msg = null;
   date = moment().startOf('day');
   tracker = null;
   showFoodError = false;
@@ -17,7 +17,7 @@ export class TrackerComponent implements OnInit {
   constructor(private s: TrackerService) { }
 
   form = new FormGroup({
-    type: new FormControl(null, [Validators.required]),
+    type: new FormControl(0, [Validators.required]),
     quantity: new FormControl(1, [Validators.required]),
   });
 
@@ -27,6 +27,7 @@ export class TrackerComponent implements OnInit {
   dateChange(date: moment.Moment) {
     this.date = date;
     this.s.readByDate(date.unix()).subscribe(r => {
+      if (!r.success) { this.msg = r.message; return; }
       this.tracker = r.data;
     })
   }
@@ -37,8 +38,8 @@ export class TrackerComponent implements OnInit {
       return false;
     }
     const data = { ...this.food, ...this.form.getRawValue() };
-    this.s.addMeal(this.date.unix(), data).subscribe(r=>{
-      if(!r.success) return;
+    this.s.addMeal(this.date.unix(), data).subscribe(r => {
+      if (!r.success) { this.msg = r.message; return; }
       this.tracker = r.data;
       this.food = null;
     })
@@ -48,9 +49,9 @@ export class TrackerComponent implements OnInit {
     this.showFoodError = false;
     this.food = e;
   }
-  removeMeal(id){
-    this.s.removeMeal(this.date.unix(), id).subscribe(r=>{
-      if(!r.success) return;
+  removeMeal(id) {
+    this.s.removeMeal(this.date.unix(), id).subscribe(r => {
+      if (!r.success) { this.msg = r.message; return; }
       this.tracker = r.data;
     })
   }
