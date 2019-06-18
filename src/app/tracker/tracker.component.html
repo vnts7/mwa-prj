@@ -58,8 +58,8 @@
       </div>
       <div class="col-2">{{tracker.calorieIntake}}</div>
     </div>
-    <div class="note">*Calories Needs is calculated based on you Weight
-      <b>{{tracker.weight}}</b> goal <b>{{tracker.goal}}</b>. <a [routerLink]="['/user', 'profile']">Change these?</a>
+    <div class="note">*Calories Needs is calculated based on your Weight
+      <b>{{tracker.weight}} kg</b> and your goal <b>{{tracker.goal|goal}}</b>. <a [routerLink]="['/user', 'profile']">Change these?</a>
     </div>
   </div>
   <div class="box">
