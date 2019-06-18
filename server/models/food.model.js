@@ -1,3 +1,4 @@
+/*
 const mongoose = require('mongoose');
 
 const FoodSchema = new mongoose.Schema({
@@ -37,3 +38,4 @@ module.exports.getFoodByName = (foodName, callback) => {
 module.exports.createFood = (food, callback) => {
     food.save(callback);
 };
+*/

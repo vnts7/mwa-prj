@@ -1,103 +1,54 @@
-<div>
-  Daily tracker for
-  <input [matDatepicker]="myDatepicker" placeholder="Choose a date">
-  <mat-datepicker #myDatepicker></mat-datepicker>
-  <button id="createTracker" onclick="addTracker()">Create tracker</button>
-  <button id="getTracker" onclick="getTracker()">Get tracker</button>
-  <button id="deleteTracker" onclick="deleteTracker()" *ngIf="hide">Remove tracker</button>
-  <button id="deleteAllTrackers" onclick="clearAllTrackers()">Clear all</button> 
-</div>
-<div class="trackerTbl" *ngIf="hide">
-  <table>
-    <tbody>
-      <tr class="meal-header">
-        <td class="meal">Breakfast</td>
-        <td class="nutrient">Calories</td>
-        <td class="nutrient">Protein</td>
-        <td class="nutrient">Carbs</td>
-        <td class="nutrient">Fat</td>
-        <td class="nutrient">Sugar</td>
-      </tr>
-      <tr *ngFor="let f of bfoods">
-        <td>{{f.food.name}</td>
-        <td>{{f.food.calories}}</td>
-        <td>{{f.food.protein}}</td>
-        <td>{{f.food.carbs}}</td>
-        <td>{{f.food.fat}}</td>
-        <td>{{f.food.sugar}}</td>
-        <td><button mat-icon-button onclick="removeFood(f.food._id, 0)"><mat-icon svgIcon="remove-circle"></mat-icon></button></td>
-      </tr>
-      <tr class="bottom">
-        <td>
-          <button mat-raised-button (click)="addFood()">Add food</button>
-        </td>
-      </tr>
-      <tr class="meal-header">
-        <td class="meal">Lunch</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr *ngFor="let f of lfoods">
-        <td>{{f.food.name}</td>
-        <td>{{f.food.calories}}</td>
-        <td>{{f.food.protein}}</td>
-        <td>{{f.food.carbs}}</td>
-        <td>{{f.food.fat}}</td>
-        <td>{{f.food.sugar}}</td>
-        <td><button mat-icon-button onclick="removeFood(f.food._id, 1)"><mat-icon svgIcon="remove-circle"></mat-icon></button></td>
-      </tr>
-      <tr class="bottom">
-        <td>
-          <button class="addFood" onclick="addFood()">Add food</button>
-        </td>  
-      </tr>
-      <tr class="meal-header">
-        <td class="meal">Dinner</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr *ngFor="let f of dfoods">
-        <td>{{f.food.name}</td>
-        <td>{{f.food.calories}}</td>
-        <td>{{f.food.protein}}</td>
-        <td>{{f.food.carbs}}</td>
-        <td>{{f.food.fat}}</td>
-        <td>{{f.food.sugar}}</td>
-        <td><button mat-icon-button onclick="removeFood(f.food._id, 2)"><mat-icon svgIcon="remove-circle"></mat-icon></button></td>
-      </tr>
-      <tr class="bottom">
-        <td>
-          <button class="addFood" onclick="addFood()">Add food</button>
-        </td>
-      </tr>
-      <tr class="meal-header">
-        <td class="meal">Snacks</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr *ngFor="let f of sfoods">
-        <td>{{f.food.name}</td>
-        <td>{{f.food.calories}}</td>
-        <td>{{f.food.protein}}</td>
-        <td>{{f.food.carbs}}</td>
-        <td>{{f.food.fat}}</td>
-        <td>{{f.food.sugar}}</td>
-        <td><button mat-icon-button onclick="removeFood(f.food._id, 3)"><mat-icon svgIcon="remove-circle"></mat-icon></button></td>
-      </tr>
-      <tr class="bottom">
-        <td>
-          <button class="addFood" onclick="addFood()">Add food</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div class="box">
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Choose a date" (dateChange)="dateChange($event.value)"
+      [value]="date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <form [formGroup]="form" (submit)="submit()">
+    <app-fsearch (select)="foodSelect($event)"></app-fsearch>
+    <div *ngIf="showFoodError" class="alert alert-danger">Please select food first!</div>
+
+    <mat-form-field>
+      <mat-label>Choose meal</mat-label>
+      <select matNativeControl required formControlName="type">
+        <option value=""></option>
+        <option value="0">Breakfast</option>
+        <option value="1">Lunch</option>
+        <option value="2">Dinner</option>
+        <option value="3">Snacks</option>
+      </select>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Quantity" formControlName="quantity">
+    </mat-form-field>
+    <button mat-flat-button type="submit" color="warn">Add Food</button>
+  </form>
+
+  <div *ngIf="!!tracker">
+    <mat-list dense>
+      <ng-container *ngFor="let i of tracker.meals">
+        <mat-list-item>
+          <div class="li-title">{{i.name}}</div>
+          <div class="li-stitle">{{i.calories}} calories</div>
+          <div class="li-action">Remove</div>
+        </mat-list-item>
+      </ng-container>
+
+      <mat-divider></mat-divider>
+    </mat-list>
+    <h3>Total calories: {{tracker.calories}}</h3>
+    <div class="fg">
+      <label>Weight</label>
+      <div>{{tracker.weight}}</div>
+    </div>
+    <div class="fg">
+      <label>CalorieNeeds</label>
+      <div>{{tracker.calorieNeeds}}</div>
+    </div>
+    <div class="fg">
+      <label>Goal</label>
+      <div>{{tracker.goal}}</div>
+    </div>
+  </div>
 </div>

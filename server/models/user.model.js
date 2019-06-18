@@ -1,3 +1,4 @@
+/*
 const mongoose = require('mongoose');
 const FoodSchema = require('mongoose').model('Food').schema;
 const mongo = require('mongodb');
@@ -137,3 +138,5 @@ module.exports.getWeightByDate = (date, callback) => {
     const query = { date: date };
     User.trackers.findOne(query, callback).weight;
 };
+
+*/
