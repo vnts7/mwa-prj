@@ -10,10 +10,14 @@ import {
   MatFormFieldModule,
   MatCheckboxModule,
   MatIconModule,
-  MatMenuModule,
   MatSelectModule,
-  MatTabsModule
+  MatTabsModule,
+  MatMenuModule,
+  MatDatepickerModule,
+  MatListModule,
+  MatProgressBarModule,
 } from "@angular/material";
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
@@ -33,6 +37,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { GenderPipe } from './pipe/gender.pipe';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { TrackerComponent } from './tracker/tracker.component';
 
 
 @NgModule({
@@ -45,6 +50,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
     GenderPipe,
     ProfileComponent,
     AboutUsComponent,
+    TrackerComponent,
     
   ],
   
@@ -56,6 +62,9 @@ import { AboutUsComponent } from './about-us/about-us.component';
     MatToolbarModule, MatExpansionModule, MatProgressSpinnerModule,
     MatPaginatorModule,  MatInputModule,  MatCardModule, MatTabsModule,
     MatButtonModule, MatCheckboxModule,MatIconModule, MatMenuModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
+    MatListModule,
 
     RouterModule.forRoot(routes),
     
