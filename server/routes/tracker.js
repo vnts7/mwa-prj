@@ -17,4 +17,10 @@ router.delete('/:date/:mealId', async (req, res, next) => {
   res.json({ success: true, data });
 });
 
+router.get('/:date/chart', async (req, res, next) => {
+  const date = Number(req.params.date);
+  const data = await ct.findFromDate(req.user._id, date);
+  res.json({ success: true, data });
+});
+
 module.exports = router;

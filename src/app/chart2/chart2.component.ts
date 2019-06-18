@@ -1,11 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core'; 
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChartDataSets, ChartOptions } from 'chart.js';
-import { Label, Color, BaseChartDirective } from 'ng2-charts';
-import * as pluginAnnotations from 'chartjs-plugin-annotation'; 
-import { HttpClient } from '@angular/common/http';
-import { AuthService } from '../services/auth.service';
-import { Subscription } from 'rxjs';
-import * as moment from 'moment'; 
+import { Label, BaseChartDirective } from 'ng2-charts';
+import * as pluginAnnotations from 'chartjs-plugin-annotation';
+import * as moment from 'moment';
+import { TrackerService } from '../services/tracker.service';
 @Component({
   selector: 'app-chart2',
   templateUrl: './chart2.component.html',
@@ -13,70 +11,65 @@ import * as moment from 'moment';
 })
 export class Chart2Component implements OnInit {
 
-  
+
   public lineChartLegend = true;
   public lineChartType = 'line';
   public lineChartPlugins = [pluginAnnotations];
 
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
 
-  constructor(private http: HttpClient, private authService : AuthService) { } 
-  
+  constructor(private s: TrackerService) { }
+
   ngOnInit() {
-    this.getData();
+    this.changePeriod(1);
   }
-  public lineChartData: ChartDataSets[] = [
+  public data: ChartDataSets[] = [
     { data: [], label: 'Calories Need' },
-    { data: [], label: 'Calories Taken' }, 
+    { data: [], label: 'Calories Intake' },
+    { data: [], label: 'Weight', yAxisID: 'y-axis-1' },
   ];
-  public lineChartLabels: Label[] = [];
+  public labels: Label[] = [];
 
-  sub : Subscription;
-  getData() {
-    var lastWeekTime =  this.getLast2WeekStart(); 
-    console.log(lastWeekTime.unix(), lastWeekTime.format("MM/DD/YYYY"))
-    this.sub =   this.http.get('api/profile/chart/' + this.authService.user._id + "?date="+lastWeekTime.unix()).subscribe( (res : Array<any>) => { 
-        res.forEach(element => { 
-          var time = moment.unix(element.date).format("MM/DD/YYYY");
-           this.lineChartLabels.push(time)
-          this.lineChartData[0].data.push(Number(element.calorieNeeds))
-          this.lineChartData[1].data.push(Number(element.sumTakenCalorie  ))
-        }); 
-        console.log('chartDatasets', this.lineChartData,this.lineChartLabels)
-    });
-    
-  }
-
-  getLast2WeekStart() {
-    var today = moment();
-    var daystoLastMonday = 0 - (1 - today.isoWeekday()) + 15;
-    var lastMonday = today.subtract('days', daystoLastMonday);
-    return lastMonday;
-  }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
+  changePeriod(month) {
+    const date = moment().startOf('day').subtract(month, 'month').unix();
+    this.s.readFromDate(date).subscribe(r => {
+      if (!r.success) { return; }
+      r.data.forEach(i => {
+        var time = moment.unix(i.date).format("MM/DD/YYYY");
+        this.labels.push(time)
+        this.data[0].data.push(i.calorieNeeds);
+        this.data[1].data.push(i.calorieIntake);
+        this.data[2].data.push(i.weight);
+      });
+    })
   }
 
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
     scales: {
       // We use this empty structure as a placeholder for dynamic theming.
-      xAxes: [{}],
+      xAxes: [{
+        ticks: {
+          display: false //this will remove only the label
+        }
+      }],
       yAxes: [
         {
           id: 'y-axis-0',
           position: 'left',
+          gridLines: {
+            color: 'rgba(0,0,0,0.1)',
+          },
         },
         {
           id: 'y-axis-1',
           position: 'right',
           gridLines: {
-            color: 'rgba(255,0,0,0.3)',
+            color: 'rgba(255,0,0,0)',
           },
-          ticks: {
-            fontColor: 'red',
-          }
+          // ticks: {
+          //   fontColor: 'red',
+          // }
         }
       ]
     },
@@ -98,22 +91,4 @@ export class Chart2Component implements OnInit {
       ],
     },
   };
-  public lineChartColors: Color[] = [
-    { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    },
-    { // purple
-      backgroundColor: 'rgba(221,211,238)',
-      borderColor: '#673ab7',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    } 
-  ];
 }

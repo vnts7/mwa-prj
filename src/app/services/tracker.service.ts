@@ -33,4 +33,13 @@ export class TrackerService {
       })
     });
   }
+
+  readFromDate(date): Observable<any> {
+    return new Observable(observer => {
+      this.http.get(`/api/tracker/${date}/chart`).subscribe((r: any) => {
+        observer.next(r);
+        observer.complete();
+      })
+    });
+  }
 }

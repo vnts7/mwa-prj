@@ -1,29 +1,15 @@
- 
-<div class="flex">
-    <div class="flex-item">
-      <div style="display: block;">
-        <canvas baseChart width="400" height="200"
-                  [datasets]="lineChartData"
-                  [labels]="lineChartLabels"
-                  [options]="lineChartOptions"
-                  [colors]="lineChartColors"
-                  [legend]="lineChartLegend"
-                  [chartType]="lineChartType"
-                  [plugins]="lineChartPlugins" 
-          ></canvas>
-      </div>
-    </div>
-    <div class="flex-item">
-      <table class="table table-responsive table-condensed">
-        <tr>
-          <th>Date</th>
-          <th *ngFor="let label of lineChartLabels">{{label}}</th>
-        </tr>
-        <tr *ngFor="let d of lineChartData; let i=index" [class]="'line-'+i">
-          <th><span *ngIf="i==0"> Calories Need </span>
-            <span *ngIf="i==1"> Calories Taken </span>
-          </th> 
-          <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
-        </tr>
-      </table> 
+<div class="box">
+  <mat-form-field>
+    <mat-label>Choose time period</mat-label>
+    <select matNativeControl (change)="changePeriod($event.target.value)">
+      <option value="1">Last 1 month</option>
+      <option value="2">Last 2 months</option>
+      <option value="6">Last 6 months</option>
+      <option value="12">Last 1 year</option>
+    </select>
+  </mat-form-field>
+  <div style="display: block;">
+    <canvas baseChart width="400" height="200" [datasets]="data" [labels]="labels" [options]="lineChartOptions"
+      [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins"></canvas>
   </div>
+</div>
