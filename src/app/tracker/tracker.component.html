@@ -7,48 +7,76 @@
   </mat-form-field>
   <form [formGroup]="form" (submit)="submit()">
     <app-fsearch (select)="foodSelect($event)"></app-fsearch>
-    <div *ngIf="showFoodError" class="alert alert-danger">Please select food first!</div>
 
-    <mat-form-field>
-      <mat-label>Choose meal</mat-label>
-      <select matNativeControl required formControlName="type">
-        <option value=""></option>
-        <option value="0">Breakfast</option>
-        <option value="1">Lunch</option>
-        <option value="2">Dinner</option>
-        <option value="3">Snacks</option>
-      </select>
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Quantity" formControlName="quantity">
-    </mat-form-field>
-    <button mat-flat-button type="submit" color="warn">Add Food</button>
+    <div class="row">
+      <div class="col-6">
+        <div *ngIf="showFoodError" class="alert alert-danger">Please select food first!</div>
+        <div *ngIf="!!food">
+          <h4>{{food.name}}</h4>
+          <ul>
+            <li>Calories: {{food.calories}}</li>
+            <li>Carbs: {{food.carbs}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-6">
+        <mat-form-field>
+          <mat-label>Choose meal</mat-label>
+          <select matNativeControl required formControlName="type">
+            <option value=""></option>
+            <option value="0">Breakfast</option>
+            <option value="1">Lunch</option>
+            <option value="2">Dinner</option>
+            <option value="3">Snacks</option>
+          </select>
+        </mat-form-field>
+        <mat-form-field style="width: 70px;">
+          <input matInput placeholder="Quantity" formControlName="quantity">
+        </mat-form-field>
+        <p>
+          <button mat-flat-button type="submit" color="warn" style="width: 100%">Add Meal</button>
+        </p>
+      </div>
+    </div>
   </form>
-
-  <div *ngIf="!!tracker">
-    <mat-list dense>
-      <ng-container *ngFor="let i of tracker.meals">
-        <mat-list-item>
-          <div class="li-title">{{i.name}}</div>
-          <div class="li-stitle">{{i.calories}} calories</div>
-          <div class="li-action">Remove</div>
-        </mat-list-item>
-      </ng-container>
-
-      <mat-divider></mat-divider>
-    </mat-list>
-    <h3>Total calories: {{tracker.calories}}</h3>
-    <div class="fg">
-      <label>Weight</label>
-      <div>{{tracker.weight}}</div>
+</div>
+<ng-container *ngIf="!!tracker">
+  <div class="box">
+    <div class="row">
+      <div class="col-3"> Calories Needs*</div>
+      <div class="col-7 cpb">
+        <mat-progress-bar mode="determinate" [value]="tracker.calorieNeeds/maxCalo * 100"></mat-progress-bar>
+      </div>
+      <div class="col-2">{{tracker.calorieNeeds}}</div>
     </div>
-    <div class="fg">
-      <label>CalorieNeeds</label>
-      <div>{{tracker.calorieNeeds}}</div>
+    <p></p>
+    <div class="row">
+      <div class="col-3">Calories Intake</div>
+      <div class="col-7 cpb">
+        <mat-progress-bar mode="determinate" [value]="tracker.calorieIntake/maxCalo * 100" color="warn">
+        </mat-progress-bar>
+      </div>
+      <div class="col-2">{{tracker.calorieIntake}}</div>
     </div>
-    <div class="fg">
-      <label>Goal</label>
-      <div>{{tracker.goal}}</div>
+    <div class="note">*Calories Needs is calculated based on you Weight
+      <b>{{tracker.weight}}</b> goal <b>{{tracker.goal}}</b>. <a [routerLink]="['/user', 'profile']">Change these?</a>
     </div>
   </div>
-</div>
+  <div class="box">
+    <div class="list">
+      <ng-container *ngFor="let i of tracker.meals">
+        <div class="li">
+          <div class="li-title">{{i.name}}</div>
+          <div class="li-stitle">{{i.type|mealtype}} | {{i.calories}} calories | <span
+              class="chip">{{i.quantity}}</span></div>
+          <div class="li-action">
+            <button mat-icon-button color="warn" (click)="removeMeal(i._id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>

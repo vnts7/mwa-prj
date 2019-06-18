@@ -12,4 +12,9 @@ router.post('/:date', async (req, res, next) => {
   res.json({ success: true, data });
 });
 
+router.delete('/:date/:mealId', async (req, res, next) => {
+  const data = await ct.removeMeal(req.user._id, req.params.date, req.params.mealId);
+  res.json({ success: true, data });
+});
+
 module.exports = router;

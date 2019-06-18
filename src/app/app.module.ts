@@ -12,7 +12,8 @@ import {
   MatIconModule,
   MatMenuModule,
   MatDatepickerModule,
-  MatListModule
+  MatListModule,
+  MatProgressBarModule,
 } from "@angular/material";
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { BrowserModule } from '@angular/platform-browser';
@@ -34,6 +35,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { TrackerComponent } from './tracker/tracker.component';
+import { MealTypePipe } from './pipes/meal-type.pipe';
 
 
 @NgModule({
@@ -46,6 +48,7 @@ import { TrackerComponent } from './tracker/tracker.component';
     ProfileComponent,
     AboutUsComponent,
     TrackerComponent,
+    MealTypePipe,
     
   ],
   
@@ -60,6 +63,7 @@ import { TrackerComponent } from './tracker/tracker.component';
     MatDatepickerModule,
     MatMomentDateModule,
     MatListModule,
+    MatProgressBarModule,
 
     RouterModule.forRoot(routes),
     

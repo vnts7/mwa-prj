@@ -17,6 +17,14 @@ export class TrackerService {
       })
     });
   }
+  removeMeal(date, mealId): Observable<any> {
+    return new Observable(observer => {
+      this.http.delete(`/api/tracker/${date}/${mealId}`).subscribe((r: any) => {
+        observer.next(r);
+        observer.complete();
+      })
+    });
+  }
   readByDate(date): Observable<any> {
     return new Observable(observer => {
       this.http.get(`/api/tracker/${date}`).subscribe((r: any) => {

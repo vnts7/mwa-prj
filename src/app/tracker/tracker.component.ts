@@ -13,6 +13,7 @@ export class TrackerComponent implements OnInit {
   tracker = null;
   showFoodError = false;
   food = null;
+  maxCalo = 1500;
   constructor(private s: TrackerService) { }
 
   form = new FormGroup({
@@ -27,11 +28,6 @@ export class TrackerComponent implements OnInit {
     this.date = date;
     this.s.readByDate(date.unix()).subscribe(r => {
       this.tracker = r.data;
-      let c = 0;
-      this.tracker.meals.forEach(i => {
-        c+= i.calories*i.quantity;
-      });
-      this.tracker.calories = c;
     })
   }
   submit() {
@@ -43,8 +39,7 @@ export class TrackerComponent implements OnInit {
     const data = { ...this.food, ...this.form.getRawValue() };
     this.s.addMeal(this.date.unix(), data).subscribe(r=>{
       if(!r.success) return;
-      this.tracker.meals.push(r.data);
-      this.tracker.calories += r.data.calories * r.data.quantity;
+      this.tracker = r.data;
       this.food = null;
     })
     console.log(data);
@@ -52,5 +47,11 @@ export class TrackerComponent implements OnInit {
   foodSelect(e) {
     this.showFoodError = false;
     this.food = e;
+  }
+  removeMeal(id){
+    this.s.removeMeal(this.date.unix(), id).subscribe(r=>{
+      if(!r.success) return;
+      this.tracker = r.data;
+    })
   }
 }

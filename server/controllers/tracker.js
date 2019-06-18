@@ -7,6 +7,7 @@ async function fromUser(userId) {
   let o = await User.findById(userId, { weight: 1, calorieNeeds: 1, goal: 1, _id: 0 });
   o = o.toObject();
   o.meals = [];
+  o.calorieIntake = 0;
   return o;
 }
 
@@ -20,10 +21,19 @@ async function addMeal(userId, date, meal) {
     o = await new Tracker(o).save();
   }
   meal._id = mongoose.Types.ObjectId();
-  o.meals.push(meal);
-  await o.save();
-  return meal;
+  o.meals.unshift(meal);
+  o.calorieIntake += meal.calories * meal.quantity;
+  return await o.save();
 }
+
+async function removeMeal(userId, date, mealId) {
+  let o = await Tracker.findOne({ userId, date });
+  let meal = o.meals.find(i=> i._id == mealId);
+  o.calorieIntake -= meal.calories * meal.quantity;
+  o.meals = o.meals.filter(i=> i._id != mealId);
+  return await o.save();
+}
+
 async function findByDate(userId, date) {
   let o = await Tracker.findOne({ userId, date });
   if (!o) o = await fromUser(userId);
@@ -32,4 +42,5 @@ async function findByDate(userId, date) {
 module.exports = {
   addMeal,
   findByDate,
+  removeMeal,
 }
