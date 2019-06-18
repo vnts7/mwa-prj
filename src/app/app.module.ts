@@ -37,7 +37,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { TrackerComponent } from './tracker/tracker.component';
 import { MealTypePipe } from './pipes/meal-type.pipe';
 
-
+import { Chart2Component } from './chart2/chart2.component';
+import { ChartsModule } from 'ng2-charts'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +49,7 @@ import { MealTypePipe } from './pipes/meal-type.pipe';
     ProfileComponent,
     AboutUsComponent,
     TrackerComponent,
+    Chart2Component,
     MealTypePipe,
     
   ],
@@ -63,12 +65,12 @@ import { MealTypePipe } from './pipes/meal-type.pipe';
     MatDatepickerModule,
     MatMomentDateModule,
     MatListModule,
+    ChartsModule, 
     MatProgressBarModule,
-
-    RouterModule.forRoot(routes),
-    
+    RouterModule.forRoot(routes), 
     FormsModule,
     ReactiveFormsModule, 
+    
   ],
   providers: [
     {
