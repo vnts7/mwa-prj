@@ -8,11 +8,11 @@ router.get('/check', async (req, res) => {
   res.json({ success: true })
 });
 
-router.get('/chart/:id', (req, res) => {
+router.get('/chart/:id', async (req, res) => {
   var time = Number(req.query.date);  
   let userId = mongoose.Types.ObjectId(req.params.id); 
   console.log(time)
-  Tracker.aggregate([
+  await Tracker.aggregate([
       {$match : {userId: userId, date : {$gte : time} }   } 
       , { "$unwind": "$meals" }
       , {$group: { "_id": { date: "$date"}, calorieNeeds : {$first : "$calorieNeeds"},  sumTakenCalorie: {$sum: "$meals.calories" } } }
