@@ -64,6 +64,7 @@ export class ProfileComponent implements OnInit {
       this.selectedIndex = 1;
       this.user = r.data;
       this.setFormData(r.data);
+      this.dateOfBirth = o.dateOfBirth ? moment.unix(o.dateOfBirth).format("MM/DD/YYYY") : '';
     });
     return false;
   }
