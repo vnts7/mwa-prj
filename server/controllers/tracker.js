@@ -28,9 +28,9 @@ async function addMeal(userId, date, meal) {
 
 async function removeMeal(userId, date, mealId) {
   let o = await Tracker.findOne({ userId, date });
-  let meal = o.meals.find(i=> i._id == mealId);
+  let meal = o.meals.find(i => i._id == mealId);
   o.calorieIntake -= meal.calories * meal.quantity;
-  o.meals = o.meals.filter(i=> i._id != mealId);
+  o.meals = o.meals.filter(i => i._id != mealId);
   return await o.save();
 }
 
@@ -39,8 +39,14 @@ async function findByDate(userId, date) {
   if (!o) o = await fromUser(userId);
   return o;
 }
+
+async function findFromDate(userId, date) {
+  return await Tracker.find({ userId, date: { $gte: date } }, { meals: false });
+}
+
 module.exports = {
   addMeal,
   findByDate,
   removeMeal,
+  findFromDate
 }

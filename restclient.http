@@ -1,5 +1,9 @@
 
 GET http://localhost:1234/api/search/food?q=apple
 ###
-http://localhost:1234/api/search/nutrient?q=45120650
- 
+
+GET http://localhost:1234/api/profile/chart/5d080ef74286a1718832c0d3?date=156074000
+
+###
+GET http://localhost:1234/api/search/nutrient?q=45120650
+  
