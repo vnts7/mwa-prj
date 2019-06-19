@@ -16,7 +16,8 @@ async function updateProfile(userId, data) {
 function bmi(data) {
   try {
     if (data) {
-      rs = data.weight / (data.height * data.height)
+      meter = data.height/100
+      rs = data.weight / (meter * meter)
       return Math.ceil(rs)
     }
   } catch (err) { console.log('skip calculating BMI', err) }
