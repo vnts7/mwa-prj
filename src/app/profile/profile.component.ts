@@ -35,13 +35,14 @@ export class ProfileComponent implements OnInit {
     this.user = this.authService.user;
     this.s.getProfile().subscribe(r => {
       const o = r.data;
-      this.dateOfBirth = o.dateOfBirth ? moment.unix(o.dateOfBirth).format("MM/DD/YYYY") : '';
       this.user = o;
       this.setFormData(o);
     });
   }
 
   setFormData(res) {
+
+    this.dateOfBirth = res.dateOfBirth ? moment.unix(res.dateOfBirth).format("MM/DD/YYYY") : '';
     this.form.controls['weight'].setValue(res.weight)
     this.form.controls['height'].setValue(res.height)
     // "yyyy-MM-dd" for displaying
