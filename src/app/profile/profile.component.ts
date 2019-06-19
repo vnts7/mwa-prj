@@ -3,6 +3,7 @@ import { ProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import * as moment from 'moment';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -52,15 +53,14 @@ export class ProfileComponent implements OnInit {
     this.form.controls['goal'].setValue(res.goal);
 
   }
-
+  sub : Subscription;
   onSave(event) {
     if (this.form.invalid) return false;
     this.message = null;
     const o = this.form.getRawValue();
     o.dateOfBirth = moment(o.dateOfBirth, 'YYYY-MM-DD').unix();
-    this.s.updateProfile(o).subscribe(r => {
-      console.log('onSave', r)
-      // this.message = JSON.parse(rs).message;
+    this.sub = this.s.updateProfile(o).subscribe(r => {
+      console.log('onSave', r) 
       this.selectedIndex = 1;
       this.user = r.data;
       this.setFormData(r.data);
