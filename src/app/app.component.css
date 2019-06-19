@@ -32,3 +32,11 @@ nav .mat-button {
   padding: 0 16px;
   padding-top: 80px;
 }
+
+.logo {
+  font-size: 1.7em;
+}
+
+.logo b {
+  color: #ff9500
+}
