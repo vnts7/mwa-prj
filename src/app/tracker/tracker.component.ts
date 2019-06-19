@@ -13,7 +13,7 @@ export class TrackerComponent implements OnInit {
   tracker = null;
   showFoodError = false;
   food = null;
-  maxCalo = 1500;
+  maxCalo = 5000;
   constructor(private s: TrackerService) { }
 
   form = new FormGroup({

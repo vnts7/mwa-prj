@@ -25,7 +25,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
   }],
   gender: { // 0: male, 1: female
-    type: Boolean
+    type: Number
   },
   weight: {
     type: Number
@@ -36,7 +36,7 @@ const UserSchema = new mongoose.Schema({
   dateOfBirth: {
     type: Number //user moment.unix()
   },
-  activities: { // 1: sedentary, 2: lightly active, 3: moderately active, 4: active, 5: very active
+  activities: { // 0: Sedentary, 1: Lightly active, 2: Moderately active, 3: Active, 4: Very active
     type: Number
   },
   goal: { // 0: lose weight, 1: maintain weight, 2: gain weight
