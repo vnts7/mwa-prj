@@ -9,11 +9,11 @@ export class GoalPipe implements PipeTransform {
     // 0: lose weight, 1: maintain weight, 2: gain weight
     switch (value) {
       case 0:
-        return 'lose weight';
+        return 'Lose weight';
       case 1:
-        return 'maintain weight';
+        return 'Maintain weight';
       case 2:
-        return 'gain weight';
+        return 'Gain weight';
       default:
         return '???';
     }

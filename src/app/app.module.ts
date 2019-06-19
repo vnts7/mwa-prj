@@ -35,7 +35,6 @@ import { SearchcomponentComponent } from './searchcomponent/searchcomponent.comp
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
-import { GenderPipe } from './pipe/gender.pipe';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { TrackerComponent } from './tracker/tracker.component';
 import { MealTypePipe } from './pipes/meal-type.pipe';
@@ -43,6 +42,8 @@ import { MealTypePipe } from './pipes/meal-type.pipe';
 import { Chart2Component } from './chart2/chart2.component';
 import { ChartsModule } from 'ng2-charts'; 
 import { GoalPipe } from './pipes/goal.pipe';
+import { GenderPipe } from './pipes/gender.pipe';
+import { ActivityPipe } from './pipes/activity.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +58,7 @@ import { GoalPipe } from './pipes/goal.pipe';
     Chart2Component,
     MealTypePipe,
     GoalPipe,
+    ActivityPipe,
     
   ],
   

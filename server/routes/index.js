@@ -9,7 +9,7 @@ router.use('/user', require('./user'));
 //outer.use('/profile', authRequire, require('./profile'));
 
 //TODO skip security check during developing
-router.use('/profile', require('./profile'));
+router.use('/profile', authRequire, require('./profile'));
 
 
 
