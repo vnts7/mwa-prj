@@ -10,6 +10,8 @@ import {
   MatFormFieldModule,
   MatCheckboxModule,
   MatIconModule,
+  MatSelectModule,
+  MatTabsModule,
   MatMenuModule,
   MatDatepickerModule,
   MatListModule,
@@ -33,6 +35,7 @@ import { SearchcomponentComponent } from './searchcomponent/searchcomponent.comp
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { GenderPipe } from './pipe/gender.pipe';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { TrackerComponent } from './tracker/tracker.component';
 import { MealTypePipe } from './pipes/meal-type.pipe';
@@ -47,6 +50,7 @@ import { GoalPipe } from './pipes/goal.pipe';
     SearchcomponentComponent,
     RegisterComponent,
     LoginComponent,
+    GenderPipe,
     ProfileComponent,
     AboutUsComponent,
     TrackerComponent,
@@ -60,9 +64,9 @@ import { GoalPipe } from './pipes/goal.pipe';
     BrowserModule, 
     HttpClientModule,
     BrowserAnimationsModule,
-    MatAutocompleteModule, MatFormFieldModule,    
+    MatAutocompleteModule, MatFormFieldModule, MatSelectModule,
     MatToolbarModule, MatExpansionModule, MatProgressSpinnerModule,
-    MatPaginatorModule,  MatInputModule,  MatCardModule, 
+    MatPaginatorModule,  MatInputModule,  MatCardModule, MatTabsModule,
     MatButtonModule, MatCheckboxModule,MatIconModule, MatMenuModule,
     MatDatepickerModule,
     MatMomentDateModule,

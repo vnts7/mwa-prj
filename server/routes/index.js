@@ -6,7 +6,12 @@ const router = express.Router();
 //Add route here
 router.use('/user', require('./user'));
 //authRequire route
-router.use('/profile', authRequire, require('./profile'));
+//outer.use('/profile', authRequire, require('./profile'));
+
+//TODO skip security check during developing
+router.use('/profile', require('./profile'));
+
+
 
 router.use('/search', require('./search'));
 

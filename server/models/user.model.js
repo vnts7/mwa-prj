@@ -1,7 +1,8 @@
 /*
 const mongoose = require('mongoose');
-const FoodSchema = require('mongoose').model('Food').schema;
+//const FoodSchema = require('mongoose').model('Food').schema;
 const mongo = require('mongodb');
+var ObjectId = require('mongodb').ObjectID;
 
 const UserSchema = new mongoose.Schema({
     username: {
@@ -60,7 +61,7 @@ const UserSchema = new mongoose.Schema({
             _id: ObjectId,
             foods: [{
                 _id: ObjectId,
-                food: FoodSchema,
+               // food: FoodSchema,
                 quantity: {
                     type: Number
                 }
@@ -83,7 +84,7 @@ const UserSchema = new mongoose.Schema({
 });
 
 // module.exports = mongoose.model('User', UserSchema);
-const User = module.exports = mongoose.model('User', UserSchema);
+const User = module.exports = mongoose.model('User2', UserSchema);
 
 module.exports.getUserByUsername = (username, callback) => {
     const query = { username: username };

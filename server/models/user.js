@@ -45,6 +45,9 @@ const UserSchema = new mongoose.Schema({
   bmi: {
     type: Number
   },
+  bmr: {
+    type: Number
+  },
   calorieNeeds: {
     type: Number
   },

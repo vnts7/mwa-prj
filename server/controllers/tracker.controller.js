@@ -10,8 +10,8 @@ const controller = {};
  * 
  * {Date} req.body.date
  */
-controller.addTracker = async((req, res) => {
-    await User.getUserByUsername(req.session.username, (err, user) => {
+controller.addTracker =  ((req, res) => {
+      User.getUserByUsername(req.session.username, (err, user) => {
         user.getTrackerByDate(req.body.date, (err, tracker) => {
             if (err) {
                 return res.status(500).json({
@@ -53,8 +53,8 @@ controller.addTracker = async((req, res) => {
  * {Date} req.body.date
  * {number} req.body.type - meal type 0: breakfast, 1: lunch, 2: dinner, 3: snacks
  */
-controller.addFood = async((req, res) => {
-    await Food.getFoodByName(req.body.food.name, (err, food) => {
+controller.addFood =  ((req, res) => {
+      Food.getFoodByName(req.body.food.name, (err, food) => {
         if (err) {
             return res.status(500).json({
                 message: 'An error occured while adding food.'
@@ -102,7 +102,7 @@ controller.addFood = async((req, res) => {
  * {Date} req.body.date
  * {number} req.body.type - meal type 0: breakfast, 1: lunch, 2: dinner, 3: snacks
  */
-controller.removeFood = async((req, res) => {
+controller.removeFood =  ((req, res) => {
     User.getUserByUsername(req.session.username, (err, user) => {
         user.removeFood(req.body.id, req.body.type, req.body.date, (err) => {
             if (err) {
@@ -123,7 +123,7 @@ controller.removeFood = async((req, res) => {
  * 
  * {Date} req.body.date
  */
-controller.removeTracker = async((req, res) => {
+controller.removeTracker =  ((req, res) => {
     User.getUserByUsername(req.session.username, (err, user) => {
         user.removeTracker(req.body.date, (err, tracker) => {
             if (err) {
@@ -138,7 +138,7 @@ controller.removeTracker = async((req, res) => {
 /**
  * Clear all trackers
  */
-controller.clearAllTrackers = async((req, res) => {
+controller.clearAllTrackers =  ((req, res) => {
     User.getUserByUsername(req.session.username, (err, user) => {
         user.clearAllTrackers((err, tracker) => {
             if (err) {
@@ -155,7 +155,7 @@ controller.clearAllTrackers = async((req, res) => {
  * 
  * {Date} req.params.date
  */
-controller.getDailyTracker = async((req, res) => {
+controller.getDailyTracker =  ((req, res) => {
     User.getUserByUsername(req.session.username, (err, user) => {
         if (err) {
             return res.status(500).json({
