@@ -44,6 +44,7 @@ import { ChartsModule } from 'ng2-charts';
 import { GoalPipe } from './pipes/goal.pipe';
 import { GenderPipe } from './pipes/gender.pipe';
 import { ActivityPipe } from './pipes/activity.pipe';
+import { BMIPipe } from './pipes/bmi.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,6 +60,7 @@ import { ActivityPipe } from './pipes/activity.pipe';
     MealTypePipe,
     GoalPipe,
     ActivityPipe,
+    BMIPipe,
     
   ],
   

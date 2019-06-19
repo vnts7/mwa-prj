@@ -51,7 +51,7 @@
             <div>
               <p><label>Name: </label>{{user.fullname}}</p>
               <p><label>Email: </label> {{user.email}}</p>
-              <p class="special"><label>BMI: </label> {{user.bmi}}</p>
+              <p class="special"><label>BMI: </label> {{user.bmi}} <span>- {{user.bmi|bmi}}</span></p>
               <p class="special"><label>BMR: </label> {{user.bmr}}</p>
               <p class="special"><label>Calories Needs: </label> {{user.calorieNeeds}}</p>
               <p><label>Gender: </label> {{user.gender | gender}}</p>
