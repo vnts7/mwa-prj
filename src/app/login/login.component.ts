@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', [Validators.required]),
   });
   get email(): any { return this.form.get('email'); }
-  submit() {
+  submit(e) {
     this.msg = null;
     console.log('submit', this.ar.snapshot.queryParamMap.get('_r'));
     const user = this.form.getRawValue();
