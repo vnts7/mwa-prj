@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import axios from 'axios';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ export class LoginComponent implements OnInit {
   constructor(private u: UserService, private router: Router, private ar: ActivatedRoute) { }
   msg = null;
   ngOnInit() {
+    
   }
   form = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -20,6 +22,7 @@ export class LoginComponent implements OnInit {
   });
   get email(): any { return this.form.get('email'); }
   submit(e) {
+    axios.get("");
     this.msg = null;
     console.log('submit', this.ar.snapshot.queryParamMap.get('_r'));
     const user = this.form.getRawValue();
