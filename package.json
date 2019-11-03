@@ -4,8 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "concurrently -c \"yellow.bold,green.bold\" -n \"BUILD,SERVER\" \"ng build --output-path dist --watch\" \"nodemon server\"",
+    "dev": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "test": "ng test",
+    "test:headless": "ng test --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
