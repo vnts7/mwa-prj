@@ -16,6 +16,7 @@ import {
   MatDatepickerModule,
   MatListModule,
   MatProgressBarModule,
+  MatBadgeModule,
 } from "@angular/material";
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { BrowserModule } from '@angular/platform-browser';
@@ -80,6 +81,7 @@ import { BMIPipe } from './pipes/bmi.pipe';
     RouterModule.forRoot(routes), 
     FormsModule,
     ReactiveFormsModule, 
+    MatBadgeModule,
     
   ],
   providers: [
