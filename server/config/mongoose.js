@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const config = require('./config');
 
 mongoose.connect(config.mongo.host, { keepAlive: 1 , useNewUrlParser: true }).then(
-  () => {console.log('Connected to DB ....', config.mongo.host)}
+  () => {console.log('Connected to DB ....')}
 ).catch( (err) => {console.log('connection error', err)});
 
 mongoose.connection.on('error', () => {
